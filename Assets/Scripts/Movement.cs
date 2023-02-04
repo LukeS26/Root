@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
 
     private bool canMove = false;
 
+    private Vector2 pos = new Vector2(0, 4.5f);
+
     void Awake() {
         inputManager = new InputManager();
 
@@ -37,24 +39,19 @@ public class Movement : MonoBehaviour
             
             if(Mathf.Abs(y) > Mathf.Abs(x)) {
                 if(y > 0) {
-                    Debug.Log(y);
-                    rigidbody.MovePosition( rigidbody.position + new Vector2(0, 1) );
+                    //Move(UP);
                 } else {
-                    Debug.Log(y);
-                    rigidbody.MovePosition( rigidbody.position + new Vector2(0, -1) );
+                    //MoveDown();
                 }
             } else {
                 if(x > 0) {
-                    Debug.Log(x);
-                    rigidbody.MovePosition( rigidbody.position + new Vector2(1, 0) );
+                    //MoveRight();
                 } else {
-                    Debug.Log(x);
-                    rigidbody.MovePosition( rigidbody.position + new Vector2(-1, 0) );
+                    //MoveLeft();
                 }
             }
         }
 
     }
-
 
 }
