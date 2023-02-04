@@ -13,9 +13,9 @@ Programming:
 3. Stuff?!?!?!?!
 
 Art:
-1. Plants
-2. Dirt
-3. Water
+1. Vertical Stem
+2. Horizontal Stem
+3. Split Stem (each goes from left to right)
 
 Music:
 1. Game theme
