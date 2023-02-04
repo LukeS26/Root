@@ -22,8 +22,8 @@ Try to Keep things in 16-bit generally.
 
 Andrew:
 1. Vertical Stem (DONE)
-2. Horizontal Stem
-3. Split Stem (each goes from left to right)
+2. Horizontal Stem (DONE)
+3. Split Stem (each goes from left to right) (DONE)
 4. Possible Flower
 5. Dirt
 6. Water
