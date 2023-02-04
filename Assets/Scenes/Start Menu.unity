@@ -1954,6 +1954,9 @@ MonoBehaviour:
   inGameUI: {fileID: 0}
   eventHandler: {fileID: 0}
   closeButton: {fileID: 0}
+  cursorTexture: {fileID: 0}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
 --- !u!4 &1054815495
 Transform:
   m_ObjectHideFlags: 0

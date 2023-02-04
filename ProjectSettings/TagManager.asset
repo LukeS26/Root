@@ -38,9 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: foreground
-    uniqueID: 4040612501
+  - name: Dirt
+    uniqueID: 2297906491
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: foreground
+    uniqueID: 4040612501
     locked: 0
