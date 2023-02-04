@@ -1,5 +1,5 @@
 {
-    "name": "Controls",
+    "name": "InputManager",
     "maps": [
         {
             "name": "Plant",
@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "2ce8addf-6eb8-4d88-a1aa-727af9ee60b8",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
