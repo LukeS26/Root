@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     
     private LevelGen level;
 
-    public Dictionary <Vector2, Sprite[]> sprites = new Dictionary <Vector2, Sprite[]>();
+    public LineRenderer trail;
 
     public Vector2 pos = new Vector2(0, 4.5f);
 
@@ -21,6 +21,8 @@ public class Movement : MonoBehaviour
         inputManager = new InputManager();
 
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
+
+        trail = gameObject.GetComponent<LineRenderer>();
     }
 
     protected void OnEnable() {
@@ -71,7 +73,7 @@ public class Movement : MonoBehaviour
             pos += dir;
             availableMoves--;
 
-            //level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos + dir).x) + 9 ] = Instantiate();
+            trail.SetPosition(trail.positionCount++, pos );
 
             transform.position = pos;
         }
