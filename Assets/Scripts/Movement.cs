@@ -10,15 +10,18 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rigidbody;
 
     private bool canMove = false;
+    
+    private LevelGen level;
 
-    private Vector2 pos = new Vector2(0, 4.5f);
+    public Dictionary <Vector2, Sprite[]> sprites = new Dictionary <Vector2, Sprite[]>();
+
+    public Vector2 pos = new Vector2(0, 4.5f);
 
     void Awake() {
         inputManager = new InputManager();
 
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
     }
-
 
     protected void OnEnable() {
         inputManager.Plant.Enable();
@@ -39,19 +42,46 @@ public class Movement : MonoBehaviour
             
             if(Mathf.Abs(y) > Mathf.Abs(x)) {
                 if(y > 0) {
-                    //Move(UP);
+                    Move( new Vector2(0, 1) );
                 } else {
-                    //MoveDown();
+                    Move( new Vector2(0, -1) );
                 }
             } else {
                 if(x > 0) {
-                    //MoveRight();
+                    Move( new Vector2(1, 0) );
                 } else {
-                    //MoveLeft();
+                    Move( new Vector2(-1, 0) );
                 }
             }
         }
 
     }
 
+
+    void Move(Vector2 dir) {
+        if( (pos + dir).x < -9 ||  (pos + dir).x > 9 || (pos + dir).y < -4.5f || (pos + dir).y > 4.5f) {
+            return;
+        }
+
+        //To get array coordinates do (x+9), (4.5-y)
+        if( level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos + dir).x) + 9 ] < 2) {
+            
+            level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos + dir).x) + 9 ] = 5;
+
+            pos += dir;
+            availableMoves--;
+
+            //level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos + dir).x) + 9 ] = Instantiate();
+
+            transform.position = pos;
+        }
+
+        if( level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] == 2) {
+            availableMoves--;
+            level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] = 0;
+            
+            //GAME OBJECT: level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos+dir).x) + 9 ];
+        }
+
+    }
 }
