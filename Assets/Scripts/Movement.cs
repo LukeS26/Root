@@ -76,6 +76,8 @@ public class Movement : MonoBehaviour
             trail.SetPosition(trail.positionCount++, pos );
 
             transform.position = pos;
+
+            return;
         }
 
         if( level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] == 2) {
