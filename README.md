@@ -13,9 +13,12 @@ Programming:
 3. Stuff?!?!?!?!
 
 Art:
+Try to Keep things in 16-bit generally.
+
 1. Vertical Stem
 2. Horizontal Stem
 3. Split Stem (each goes from left to right)
+4. Possible Flower
 
 Music:
 1. Game theme
