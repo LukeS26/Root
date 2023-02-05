@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     //Int Variables
     public int movesLeft;
-    public int waterTiles = 1;
+    public int waterTiles = 0;
 
     //Bool Variables
     private bool paused = false;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             OpenBeatLevelMenu();
         }
-        if(movesLeft <= 0)
+        else if(movesLeft <= 0)
         {
             OpenLoseLevelMenu();
         }
