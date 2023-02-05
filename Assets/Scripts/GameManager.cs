@@ -49,13 +49,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTurns();
-        if(movesLeft <= 0)
-        {
-            OpenLoseLevelMenu();
-        }
         if(waterTiles <= 0)
         {
             OpenBeatLevelMenu();
+        }
+        if(movesLeft <= 0)
+        {
+            OpenLoseLevelMenu();
         }
     }
 
