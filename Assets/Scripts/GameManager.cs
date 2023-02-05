@@ -226,6 +226,11 @@ public class GameManager : MonoBehaviour
                     worm.Move();
                 }
 
+                VineAnimation[] animatedVines = FindObjectsOfType<VineAnimation>();
+                foreach (VineAnimation animatedVine in animatedVines) {
+                    animatedVine.Animate();
+                }
+
                 if(loseLevelMenu.activeSelf) {
                     return;
                 }

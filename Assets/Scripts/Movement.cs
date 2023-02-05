@@ -67,8 +67,11 @@ public class Movement : MonoBehaviour
             newVine.GetComponent<Movement>().Move(-newDir);
             if(newVine.GetComponent<Movement>().pos == pos) {
                 Destroy(newVine.GetComponent<Movement>());
+                newVine.GetComponent<VineAnimation>().mats[0] = deadTexture;
+                newVine.GetComponent<VineAnimation>().mats[1] = deadTexture;
+                Destroy(newVine.GetComponent<VineAnimation>());
                 newVine.GetComponent<LineRenderer>().positionCount = 2;
-                newVine.GetComponent<LineRenderer>().material = deadTexture; 
+                newVine.GetComponent<LineRenderer>().material = deadTexture;
                 newVine.GetComponent<LineRenderer>().SetPosition( 0, pos );
                 newVine.GetComponent<LineRenderer>().SetPosition( 1, pos - (newDir * 0.5f) );
             }
@@ -79,6 +82,10 @@ public class Movement : MonoBehaviour
                 Destroy(gameObject.GetComponent<Movement>());
                 GameObject deadEnd = Instantiate(gameObject);
                 Destroy(deadEnd.GetComponent<Movement>());
+                deadEnd.GetComponent<VineAnimation>().mats[0] = deadTexture;
+                deadEnd.GetComponent<VineAnimation>().mats[1] = deadTexture;
+
+                Destroy(deadEnd.GetComponent<VineAnimation>());
                 deadEnd.GetComponent<LineRenderer>().positionCount = 2;
                 deadEnd.GetComponent<LineRenderer>().SetPosition(0, pos);
                 deadEnd.GetComponent<LineRenderer>().SetPosition( 1, pos + (newDir * 0.5f) );
