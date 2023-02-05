@@ -100,6 +100,7 @@ public class Movement : MonoBehaviour
             trail.SetPosition(trail.positionCount++, pos );
 
             Destroy(gameObject.GetComponent<Movement>());
+            GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles --;
 
             return true;
         }

@@ -14,12 +14,14 @@ public class GameManager : MonoBehaviour
     public GameObject instructionsScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
-
+    
     //InputManager Variables
     private InputManager inputManager;
 
     //Int Variables
     public int movesLeft;
+
+    public int waterTiles = 0;
 
     //Bool Variables
     private bool paused = false;
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTurns();
+
     }
 
     // Makes sure the player knows how many turns are left

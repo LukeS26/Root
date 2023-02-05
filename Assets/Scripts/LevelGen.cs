@@ -24,6 +24,8 @@ public class LevelGen : MonoBehaviour
                     continue;
                 }
                 levelSave[y,x] = Instantiate( objects[ level[y,x] ], new Vector3( x - 9f, 4.5f - y, 0 ), Quaternion.identity, transform );
+
+                if(level[y,x] == 5) { GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles ++; }
             }
         }
     }
