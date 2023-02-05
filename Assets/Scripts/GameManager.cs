@@ -14,14 +14,15 @@ public class GameManager : MonoBehaviour
     public GameObject instructionsScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
+    public GameObject beatLevelMenu;
+    public GameObject loseLevelMenu;
     
     //InputManager Variables
     private InputManager inputManager;
 
     //Int Variables
     public int movesLeft;
-
-    public int waterTiles = 0;
+    public int waterTiles = 1;
 
     //Bool Variables
     private bool paused = false;
@@ -48,7 +49,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTurns();
-
+        if(movesLeft <= 0)
+        {
+            OpenLoseLevelMenu();
+        }
+        if(waterTiles <= 0)
+        {
+            OpenBeatLevelMenu();
+        }
     }
 
     // Makes sure the player knows how many turns are left
@@ -75,6 +83,22 @@ public class GameManager : MonoBehaviour
                 turnsText.text = "Turns Remaining: " + movesLeft;
             }
         }
+    }
+
+    // Stop control of roots and switches to Lose Level Menu
+    public void OpenLoseLevelMenu()
+    {
+        canMove = false;
+        loseLevelMenu.SetActive(true);
+        inGameUI.SetActive(false);
+    }
+
+    // Stop control of roots and switches to Lose Level Menu
+    public void OpenBeatLevelMenu()
+    {
+        canMove = false;
+        beatLevelMenu.SetActive(true);
+        inGameUI.SetActive(false);
     }
 
     protected void OnEnable() 
@@ -269,5 +293,11 @@ public class GameManager : MonoBehaviour
     public void OpenLevel9()
     {
         SceneManager.LoadScene(9);
+    }
+
+    // Switches to Win Screen
+    public void OpenWinScreen()
+    {
+        SceneManager.LoadScene(10);
     }
 }

@@ -2308,7 +2308,10 @@ MonoBehaviour:
   instructionsScreen: {fileID: 1761893375}
   pauseMenu: {fileID: 0}
   inGameUI: {fileID: 0}
-  movesLeft: 0
+  beatLevelMenu: {fileID: 0}
+  loseLevelMenu: {fileID: 0}
+  movesLeft: 1
+  waterTiles: 1
   turnsText: {fileID: 0}
 --- !u!4 &1054815495
 Transform:
