@@ -27,20 +27,27 @@ public class GameManager : MonoBehaviour
     //Script Variables
     Movement movementScript;
 
-    void Awake() {
+    void Awake() 
+    {
         inputManager = new InputManager();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        turnsText.text = "Turns Remaining: " + "##";
+        if(SceneManager.GetActiveScene().name != "Start Menu")
+        {
+            turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
+        if(SceneManager.GetActiveScene().name != "Start Menu")
+        {
+            turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
+        }
     }
 
     protected void OnEnable() 
