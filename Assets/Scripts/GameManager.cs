@@ -13,20 +13,25 @@ public class GameManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
+    public GameObject root;
 
     //TextMeshProUGUI Variables
     public TextMeshProUGUI turnsText;
+
+    //Script Variables
+    Movement movementScript;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        movementScript = root.GetComponent<Movement>();
+        turnsText.text = "Turns Remaining: " + "##";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
     }
 
     // Hides Level Select Menu and Warns Player that This Level Hasn't Been Finished Yet

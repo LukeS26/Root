@@ -8137,7 +8137,8 @@ MonoBehaviour:
   startScreen: {fileID: 0}
   pauseMenu: {fileID: 514761783}
   inGameUI: {fileID: 362699847}
-  turnsText: {fileID: 0}
+  root: {fileID: 1643599398}
+  turnsText: {fileID: 521276408}
 --- !u!4 &1010263188
 Transform:
   m_ObjectHideFlags: 0
@@ -8604,6 +8605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableMoves: 0
   trail: {fileID: 0}
+  deadTexture: {fileID: 0}
   pos: {x: 0, y: 4.5}
 --- !u!4 &1643599401
 Transform:
