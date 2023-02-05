@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 7775365}
   - component: {fileID: 7775364}
   m_Layer: 5
-  m_Name: Level 8 Button
+  m_Name: Level 17 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 78871713}
   - component: {fileID: 78871712}
   m_Layer: 5
-  m_Name: Level 6 Button
+  m_Name: Level 12 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1324,7 +1324,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1765,7 +1765,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel8
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2084,7 +2084,7 @@ GameObject:
   - component: {fileID: 577194865}
   - component: {fileID: 577194864}
   m_Layer: 5
-  m_Name: Level 9 Button Text (TMP)
+  m_Name: Level 15 Button Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2130,7 +2130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 9
+  m_text: Level 15
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2293,7 +2293,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2593,7 +2593,7 @@ GameObject:
   - component: {fileID: 672234004}
   - component: {fileID: 672234003}
   m_Layer: 5
-  m_Name: Level 7 Button
+  m_Name: Level 16 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2726,7 +2726,7 @@ GameObject:
   - component: {fileID: 743541048}
   - component: {fileID: 743541047}
   m_Layer: 5
-  m_Name: Level 9 Button Text (TMP)
+  m_Name: Level 18 Button Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2772,7 +2772,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 9
+  m_text: Level 18
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -3204,7 +3204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel9
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10551,7 +10551,7 @@ GameObject:
   - component: {fileID: 1158469902}
   - component: {fileID: 1158469901}
   m_Layer: 5
-  m_Name: Level 9 Button
+  m_Name: Level 15 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11154,7 +11154,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11215,7 +11215,7 @@ GameObject:
   - component: {fileID: 1274710237}
   - component: {fileID: 1274710236}
   m_Layer: 5
-  m_Name: Level 8 Button
+  m_Name: Level 14 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12136,7 +12136,7 @@ GameObject:
   - component: {fileID: 1528922696}
   - component: {fileID: 1528922695}
   m_Layer: 5
-  m_Name: Level 7 Button Text (TMP)
+  m_Name: Level 16 Button Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12182,7 +12182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 7
+  m_text: Level 16
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -13217,7 +13217,7 @@ GameObject:
   - component: {fileID: 1838446214}
   - component: {fileID: 1838446213}
   m_Layer: 5
-  m_Name: Level 8 Button Text (TMP)
+  m_Name: Level 14 Button Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13263,7 +13263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 8
+  m_text: Level 14
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -14525,7 +14525,7 @@ GameObject:
   - component: {fileID: 2061477029}
   - component: {fileID: 2061477028}
   m_Layer: 5
-  m_Name: Level 9 Button
+  m_Name: Level 18 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14658,7 +14658,7 @@ GameObject:
   - component: {fileID: 2125147633}
   - component: {fileID: 2125147632}
   m_Layer: 5
-  m_Name: Level 8 Button Text (TMP)
+  m_Name: Level 17 Button Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14704,7 +14704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 8
+  m_text: Level 17
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -14867,7 +14867,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel5
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14927,7 +14927,7 @@ GameObject:
   - component: {fileID: 2141695510}
   - component: {fileID: 2141695509}
   m_Layer: 5
-  m_Name: Level 6 Button Text (TMP)
+  m_Name: Level 12 Button Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14973,7 +14973,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 6
+  m_text: Level 12
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
