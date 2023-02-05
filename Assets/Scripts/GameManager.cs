@@ -77,25 +77,34 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate() 
     {   
+        //reads the Movement input of the Plant as a vector 2, and stores them for use
         float x = inputManager.Plant.Movement.ReadValue<Vector2>().x;
         float y = inputManager.Plant.Movement.ReadValue<Vector2>().y;
 
+        //Checks to see if there is no input, and if so allows a key to be pressed again
         if(Mathf.Abs(x) < 0.5f && Mathf.Abs(y) < 0.5f)
         {
             canMove = true;
         } 
+        //If the game is not paused, the key has been released, and there is movement that isn't in a diagonal direction, allow movement
         else if (!paused && canMove && Mathf.Abs(x - y) > 0.2f) 
         {
+            //key is being held down, so it can't be used until it is released again
             canMove = false;
+
+            //Decrease the number of moves left, Needs to change to be smarter
             movesLeft--;
 
+            //Finda all Movement scripts
             Movement[] roots = FindObjectsOfType<Movement>();
 
+            //If the Y magnitude is the greatest, move up/down
             if(Mathf.Abs(y) > Mathf.Abs(x)) 
             {
                 
                 if(y > 0) 
-                {
+                {   
+                    //If Y is positive, loop over each of the movement scripts (roots that can move) and move them up
                     foreach (Movement root in roots) 
                     {
                         root.Move( new Vector2(0, 1) );
@@ -103,6 +112,7 @@ public class GameManager : MonoBehaviour
                 }
                 else 
                 {
+                    //If Y is negative, loop over each of the movement scripts (roots that can move) and move them down
                     foreach (Movement root in roots) 
                     {
                         root.Move( new Vector2(0, -1) );
@@ -113,6 +123,7 @@ public class GameManager : MonoBehaviour
             {
                 if(x > 0) 
                 {
+                    //If X is positive, loop over each of the movement scripts (roots that can move) and move them right
                     foreach (Movement root in roots) 
                     {
                         root.Move( new Vector2(1, 0) );
@@ -120,6 +131,7 @@ public class GameManager : MonoBehaviour
                 } 
                 else 
                 {
+                    //If X is negative, loop over each of the movement scripts (roots that can move) and move them left
                     foreach (Movement root in roots) 
                     {
                         root.Move( new Vector2(-1, 0) );

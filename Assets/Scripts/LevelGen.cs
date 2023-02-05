@@ -31,8 +31,39 @@ public class LevelGen : MonoBehaviour
         }
     }
 
-    public LevelArray[] ParseLevel(string levelCode) {
-     return null;   
+    public LevelArray[] ParseLevel(string[] levelCode) {
+        // o Rock
+        // * Breakable
+        // s Soil
+        // + Splitter
+        // . Empty
+
+        //Should be 10
+        LevelArray[] ret = new LevelArray[levelCode.Length];
+        
+        for (int y = 0; y < levelCode.Length; y++) {
+            for(int x = 0; x < levelCode[y]; x++) {
+                switch (levelCode[y][x]) {
+                    case 'o':
+                        ret[y].Array[x] = 4;
+                        break;
+                    case '*':
+                        ret[y].Array[x] = 2;
+                        break;
+                    case 's':
+                        ret[y].Array[x] = 1;
+                        break;
+                    case '+':
+                        ret[y].Array[x] = 3;
+                        break;
+                    default:
+                        ret[y].Array[x] = 0;
+                        break;
+                }
+            }
+        }
+
+        return ret;
     }
 
 }
