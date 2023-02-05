@@ -9,11 +9,19 @@ public class Worm : MonoBehaviour
 
     public Vector2 pos;
 
+    SpriteRenderer spriteRenderer;
+
     public int dir = 1;
     void Awake() {
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
         pos = new Vector2(transform.position.x, transform.position.y);
         transform.position = pos;
+
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
+
+    void Update() {
+        spriteRenderer.flipX = dir < 0;
     }
 
     public void Move() {
