@@ -14,10 +14,13 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject inGameUI;
 
+    //InputManager Variables
     private InputManager inputManager;
 
+    //Int Variables
     public int movesLeft;
 
+    //Bool Variables
     private bool paused = false;
     private bool canMove = false;
 
@@ -35,18 +38,28 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.GetActiveScene().name != "Start Menu")
-        {
-            turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
-        }
+        UpdateTurns();
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateTurns();
+    }
+
+    // Makes sure the player knows how many turns are left
+    public void UpdateTurns()
+    {
         if(SceneManager.GetActiveScene().name != "Start Menu")
         {
-            turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
+            if(movesLeft < 10)
+            {
+                turnsText.text = "Turns Remaining: 0" + movesLeft;
+            }
+            else
+            {
+                turnsText.text = "Turns Remaining: " + movesLeft;
+            }
         }
     }
 
