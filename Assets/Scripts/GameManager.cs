@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject inGameUI;
     public GameObject beatLevelMenu;
     public GameObject loseLevelMenu;
-    
+    public GameObject rootPrefab;
+
     //InputManager Variables
     private InputManager inputManager;
 
@@ -113,6 +114,16 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate() 
     {   
+        if(inputManager.Plant.Restart.ReadValue<float>() > 0.5f) {
+            GameObject.Find("Level Generator").GetComponent<LevelGen>().Restart();
+            GameObject[] roots = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject root in roots) {
+                Destroy(root);
+            }
+
+            Instantiate(rootPrefab);
+        }
+
         // Reads the Movement input of the Plant as a vector 2, and stores them for use
         float x = inputManager.Plant.Movement.ReadValue<Vector2>().x;
         float y = inputManager.Plant.Movement.ReadValue<Vector2>().y;

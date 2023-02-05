@@ -35,6 +35,15 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""bfdcca69-6e59-4219-bcdc-d9c21de984c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,6 +189,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e51c7ce-93b6-44cd-b179-17df04e9e190"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -189,6 +209,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         // Plant
         m_Plant = asset.FindActionMap("Plant", throwIfNotFound: true);
         m_Plant_Movement = m_Plant.FindAction("Movement", throwIfNotFound: true);
+        m_Plant_Restart = m_Plant.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,11 +270,13 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Plant;
     private IPlantActions m_PlantActionsCallbackInterface;
     private readonly InputAction m_Plant_Movement;
+    private readonly InputAction m_Plant_Restart;
     public struct PlantActions
     {
         private @InputManager m_Wrapper;
         public PlantActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Plant_Movement;
+        public InputAction @Restart => m_Wrapper.m_Plant_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Plant; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +289,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlantActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlantActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlantActionsCallbackInterface.OnMovement;
+                @Restart.started -= m_Wrapper.m_PlantActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_PlantActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_PlantActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_PlantActionsCallbackInterface = instance;
             if (instance != null)
@@ -273,6 +299,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -280,5 +309,6 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     public interface IPlantActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
