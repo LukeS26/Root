@@ -23,6 +23,12 @@ public class Movement : MonoBehaviour
             return false;
         }
 
+        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '=') {
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
+           
+            return false;
+        }
+
         //To get array coordinates do (x+9), (4.5-y)
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos + dir).x) + 9 ] == '.' ) {            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);  
@@ -122,12 +128,6 @@ public class Movement : MonoBehaviour
 
             GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
 
-            return true;
-        }
-
-        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '=') {
-            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
-           
             return true;
         }
 
