@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public int availableMoves;
-    private InputManager inputManager;
-
     private Rigidbody2D rigidbody;
-
-    private bool canMove = false;
     
     private LevelGen level;
 
@@ -20,49 +15,12 @@ public class Movement : MonoBehaviour
     public Vector2 pos = new Vector2(0, 4.5f);
 
     void Awake() {
-        inputManager = new InputManager();
-
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
 
         trail = gameObject.GetComponent<LineRenderer>();
     }
 
-    protected void OnEnable() {
-        inputManager.Plant.Enable();
-    }
-
-    protected void OnDisable() {
-        inputManager.Plant.Disable();
-    }
-
-    void FixedUpdate() {
-        float x = inputManager.Plant.Movement.ReadValue<Vector2>().x;
-        float y = inputManager.Plant.Movement.ReadValue<Vector2>().y;
-
-        if(Mathf.Abs(x) < 0.5f && Mathf.Abs(y) < 0.5f) {
-            canMove = true;
-        } else if (canMove && Mathf.Abs(x - y) > 0.2f) {
-            canMove = false;
-            
-            if(Mathf.Abs(y) > Mathf.Abs(x)) {
-                if(y > 0) {
-                    Move( new Vector2(0, 1) );
-                } else {
-                    Move( new Vector2(0, -1) );
-                }
-            } else {
-                if(x > 0) {
-                    Move( new Vector2(1, 0) );
-                } else {
-                    Move( new Vector2(-1, 0) );
-                }
-            }
-        }
-
-    }
-
-
-    void Move(Vector2 dir) {
+    public void Move(Vector2 dir) {
         if( (pos + dir).x < -9 ||  (pos + dir).x > 9 || (pos + dir).y < -4.5f || (pos + dir).y > 4.5f) {
             return;
         }
@@ -73,7 +31,6 @@ public class Movement : MonoBehaviour
             level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos + dir).x) + 9 ] = 4;
 
             pos += dir;
-            availableMoves--;
 
             trail.SetPosition(trail.positionCount++, pos );
 
@@ -83,7 +40,6 @@ public class Movement : MonoBehaviour
         }
 
         if( level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] == 2) {
-            availableMoves--;
             level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] = 0;
             
             level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos+dir).x) + 9 ].GetComponent<FragileRock>().Shatter();

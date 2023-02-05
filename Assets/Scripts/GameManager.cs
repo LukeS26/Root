@@ -13,18 +13,27 @@ public class GameManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
-    public GameObject root;
+
+    private InputManager inputManager;
+
+    public int movesLeft;
+
+    private bool paused = false;
+    private bool canMove = false;
 
     //TextMeshProUGUI Variables
     public TextMeshProUGUI turnsText;
 
     //Script Variables
     Movement movementScript;
-    
+
+    void Awake() {
+        inputManager = new InputManager();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        movementScript = root.GetComponent<Movement>();
         turnsText.text = "Turns Remaining: " + "##";
     }
 
@@ -32,6 +41,70 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         turnsText.text = "Turns Remaining: " + "##"; // Makes sure the player knows how many turns are left
+    }
+
+    protected void OnEnable() 
+    {
+        inputManager.Plant.Enable();
+    }
+
+    protected void OnDisable() 
+    {
+        inputManager.Plant.Disable();
+    }
+
+    void FixedUpdate() 
+    {   
+        float x = inputManager.Plant.Movement.ReadValue<Vector2>().x;
+        float y = inputManager.Plant.Movement.ReadValue<Vector2>().y;
+
+        if(Mathf.Abs(x) < 0.5f && Mathf.Abs(y) < 0.5f)
+        {
+            canMove = true;
+        } 
+        else if (!paused && canMove && Mathf.Abs(x - y) > 0.2f) 
+        {
+            canMove = false;
+            movesLeft--;
+
+            Movement[] roots = FindObjectsOfType<Movement>();
+
+            if(Mathf.Abs(y) > Mathf.Abs(x)) 
+            {
+                
+                if(y > 0) 
+                {
+                    foreach (Movement root in roots) 
+                    {
+                        root.Move( new Vector2(0, 1) );
+                    }
+                }
+                else 
+                {
+                    foreach (Movement root in roots) 
+                    {
+                        root.Move( new Vector2(0, -1) );
+                    }
+                }
+            }
+            else 
+            {
+                if(x > 0) 
+                {
+                    foreach (Movement root in roots) 
+                    {
+                        root.Move( new Vector2(1, 0) );
+                    }
+                } 
+                else 
+                {
+                    foreach (Movement root in roots) 
+                    {
+                        root.Move( new Vector2(-1, 0) );
+                    }
+                }
+            }
+        }
     }
 
     // Hides Level Select Menu and Warns Player that This Level Hasn't Been Finished Yet
@@ -62,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         inGameUI.SetActive(false);
+        paused = true;
     }
 
     // Closes Pause Menu
@@ -69,6 +143,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         inGameUI.SetActive(true);
+        paused = false;
     }
 
     // Switches to Start Screen
