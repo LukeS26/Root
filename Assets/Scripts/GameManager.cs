@@ -91,14 +91,19 @@ public class GameManager : MonoBehaviour
         canMove = false;
         loseLevelMenu.SetActive(true);
         inGameUI.SetActive(false);
+        
+        // checks if the game ended due to a worm
         if(byWorm)
         {
+            // checks if you reached water as the worm got to you
             if(waterTiles <= 0)
             {
                 lossText.text = "You made it to water, but a worm got to you before you could drink any of it!";
             }
-            
-            lossText.text = "You were eaten by a worm!";
+            else
+            {
+                lossText.text = "You were eaten by a worm!";
+            }
         }
         else
         {
