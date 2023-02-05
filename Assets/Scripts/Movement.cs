@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
         //To get array coordinates do (x+9), (4.5-y)
         if( level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos + dir).x) + 9 ] < 2) {
             
-            level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos + dir).x) + 9 ] = 5;
+            level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos + dir).x) + 9 ] = 4;
 
             pos += dir;
             availableMoves--;
@@ -85,6 +85,32 @@ public class Movement : MonoBehaviour
             level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] = 0;
             
             //GAME OBJECT: level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos+dir).x) + 9 ];
+
+            return;
+        }
+
+        if ( level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] == 3 ) {
+            
+            level.level[ (int)Mathf.Round(4.5f - (pos+dir).y) ].Array[ (int)Mathf.Round((pos+dir).x) + 9 ] = 4;
+
+            pos += dir;
+            trail.SetPosition(trail.positionCount++, pos );
+
+            Vector2 newDir = new Vector2(1, 1) - new Vector2(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
+
+            GameObject newVine = Instantiate(gameObject);
+            
+            newVine.GetComponent<LineRenderer>().positionCount = 1;
+            newVine.GetComponent<LineRenderer>().SetPosition( 0, pos );
+
+            newVine.GetComponent<Movement>().Move(-newDir);
+            if(newVine.GetComponent<Movement>().pos == pos) {
+                Destroy(newVine);
+            }
+
+            Move(newDir);
+
+            return;
         }
 
     }
