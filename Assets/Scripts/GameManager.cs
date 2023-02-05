@@ -9,10 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject levelSelectScreen;
     public GameObject warningScreen;
     public GameObject startScreen;
-    public GameObject infoScreen;
+    public GameObject pauseMenu;
     public GameObject inGameUI;
-    public GameObject eventHandler;
-    public GameObject closeButton;
     
     // Start is called before the first frame update
     void Start()
@@ -47,6 +45,26 @@ public class GameManager : MonoBehaviour
         warningScreen.SetActive(false);
         levelSelectScreen.SetActive(false);
         startScreen.SetActive(true);
+    }
+
+    // Opens Pause Menu
+    public void OpenPause()
+    {
+        pauseMenu.SetActive(true);
+        inGameUI.SetActive(false);
+    }
+
+    // Closes Pause Menu
+    public void ClosePause()
+    {
+        pauseMenu.SetActive(false);
+        inGameUI.SetActive(true);
+    }
+
+    // Switches to Start Screen
+    public void LeaveLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
     // Switches to Level 1
