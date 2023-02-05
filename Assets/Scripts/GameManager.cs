@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject levelSelectScreen;
     public GameObject warningScreen;
     public GameObject startScreen;
+    public GameObject instructionsScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
 
@@ -160,11 +161,21 @@ public class GameManager : MonoBehaviour
         levelSelectScreen.SetActive(true);
     }
 
+    // Switches to Instructions Screen
+    public void OpenInstructions()
+    {
+        warningScreen.SetActive(false);
+        startScreen.SetActive(false);
+        levelSelectScreen.SetActive(false);
+        instructionsScreen.SetActive(true);
+    }
+
     // Switches to Start Screen
     public void OpenStart()
     {
         warningScreen.SetActive(false);
         levelSelectScreen.SetActive(false);
+        instructionsScreen.SetActive(false);
         startScreen.SetActive(true);
     }
 
