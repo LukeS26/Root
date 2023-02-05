@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     //TextMeshProUGUI Variables
     public TextMeshProUGUI turnsText;
+    public TextMeshProUGUI lossText;
 
     //Script Variables
     Movement movementScript;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
         }
         else if(movesLeft <= 0)
         {
-            OpenLoseLevelMenu();
+            OpenLoseLevelMenu(false);
         }
     }
 
@@ -89,11 +90,19 @@ public class GameManager : MonoBehaviour
     }
 
     // Stop control of roots and switches to Lose Level Menu
-    public void OpenLoseLevelMenu()
+    public void OpenLoseLevelMenu(bool byWorm)
     {
         canMove = false;
         loseLevelMenu.SetActive(true);
         inGameUI.SetActive(false);
+        if(byWorm)
+        {
+            lossText.text = "You were eaten by a worm!";
+        }
+        else
+        {
+            lossText.text = "You Ran Out of Moves!";
+        }
     }
 
     // Stop control of roots and switches to Lose Level Menu
