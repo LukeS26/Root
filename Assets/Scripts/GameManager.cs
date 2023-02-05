@@ -193,4 +193,46 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    // Switches to Level 3
+    public void OpenLevel3()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    // Switches to Level 4
+    public void OpenLevel4()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    // Switches to Level 5
+    public void OpenLevel5()
+    {
+        SceneManager.LoadScene(5);
+    }
+
+    // Switches to Level 6
+    public void OpenLevel6()
+    {
+        SceneManager.LoadScene(6);
+    }
+
+    // Switches to Level 7
+    public void OpenLevel7()
+    {
+        SceneManager.LoadScene(7);
+    }
+
+    // Switches to Level 8
+    public void OpenLevel8()
+    {
+        SceneManager.LoadScene(8);
+    }
+
+    // Switches to Level 9
+    public void OpenLevel9()
+    {
+        SceneManager.LoadScene(9);
+    }
 }
