@@ -315,6 +315,60 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(9);
     }
 
+    // Switches to Level 10
+    public void OpenLevel10()
+    {
+        SceneManager.LoadScene(10);
+    }
+
+    // Switches to Level 11
+    public void OpenLevel11()
+    {
+        SceneManager.LoadScene(11);
+    }
+
+    // Switches to Level 12
+    public void OpenLevel12()
+    {
+        SceneManager.LoadScene(12);
+    }
+
+    // Switches to Level 13
+    public void OpenLevel13()
+    {
+        SceneManager.LoadScene(13);
+    }
+
+    // Switches to Level 14
+    public void OpenLevel14()
+    {
+        SceneManager.LoadScene(14);
+    }
+
+    // Switches to Level 15
+    public void OpenLevel15()
+    {
+        SceneManager.LoadScene(15);
+    }
+
+    // Switches to Level 16
+    public void OpenLevel16()
+    {
+        SceneManager.LoadScene(16);
+    }
+
+    // Switches to Level 17
+    public void OpenLevel17()
+    {
+        SceneManager.LoadScene(17);
+    }
+
+    // Switches to Level 18
+    public void OpenLevel18()
+    {
+        SceneManager.LoadScene(18);
+    }
+
     // Switches to Win Screen
     public void OpenWinScreen()
     {
