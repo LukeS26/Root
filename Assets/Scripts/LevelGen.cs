@@ -16,6 +16,7 @@ public class LevelGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {  
+        GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles = 0;
         int[,] level = ParseLevel(levelCode);
 
         for(int y = 0; y < level.GetLength(0); y++) {
