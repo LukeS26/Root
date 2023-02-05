@@ -42,7 +42,7 @@ public class LevelGen : MonoBehaviour
         LevelArray[] ret = new LevelArray[levelCode.Length];
         
         for (int y = 0; y < levelCode.Length; y++) {
-            for(int x = 0; x < levelCode[y]; x++) {
+            for(int x = 0; x < levelCode[y].Length; x++) {
                 switch (levelCode[y][x]) {
                     case 'o':
                         ret[y].Array[x] = 4;
