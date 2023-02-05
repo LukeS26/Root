@@ -209,7 +209,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel17
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -924,7 +924,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel13
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 88d460cce393c144ab52685420236467, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3386,7 +3386,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel16
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11635,7 +11635,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel15
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12473,7 +12473,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel14
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
