@@ -53,11 +53,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTurns();
-        if(waterTiles <= 0)
-        {
-            OpenBeatLevelMenu();
-        }
-        else if(movesLeft <= 0)
+        if(movesLeft <= 0 && waterTiles > 0)
         {
             OpenLoseLevelMenu(false);
         }
@@ -97,6 +93,11 @@ public class GameManager : MonoBehaviour
         inGameUI.SetActive(false);
         if(byWorm)
         {
+            if(waterTiles <= 0)
+            {
+                lossText.text = "You made it to water, but a worm got to you before you could drink any of it!";
+            }
+            
             lossText.text = "You were eaten by a worm!";
         }
         else
@@ -214,10 +215,19 @@ public class GameManager : MonoBehaviour
 
             if(moved) {
                 movesLeft--;
-                
+
                 Worm[] worms = FindObjectsOfType<Worm>();
                 foreach (Worm worm in worms) {
                     worm.Move();
+                }
+
+                if(loseLevelMenu.activeSelf) {
+                    return;
+                }
+
+                if(waterTiles <= 0)
+                {
+                    OpenBeatLevelMenu();
                 }
             }
         }

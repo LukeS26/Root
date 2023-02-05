@@ -11,7 +11,12 @@ public class Worm : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    public Sprite[] sprites = new Sprite[2];
+    
+    int curSprite = 0;
+
     public int dir = 1;
+
     void Awake() {
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
         pos = new Vector2(transform.position.x, transform.position.y);
@@ -26,12 +31,15 @@ public class Worm : MonoBehaviour
 
     public void Move() {
         if( (pos.x + dir) < -9 || (pos.x + dir) > 9) {
-            dir *= 1;
-
+            dir *= -1;
             if( (pos.x + dir) < -9 || (pos.x + dir) > 9) {
                 return;
             }
         }
+
+        curSprite ++;
+        curSprite %= 2;
+        spriteRenderer.sprite = sprites[curSprite];
 
         System.Text.StringBuilder strBuilder;
 
