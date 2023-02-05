@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
     // Makes sure the player knows how many turns are left
     public void UpdateTurns()
     {
+        // Makes sure that Start Menu doesn't try to access inaccessible object
         if(SceneManager.GetActiveScene().name != "Start Menu")
         {
+            // Makes sure the UI always displays two digits for the remaining turns
             if(movesLeft < 10)
             {
                 turnsText.text = "Turns Remaining: 0" + movesLeft;
