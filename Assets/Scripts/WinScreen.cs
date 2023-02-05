@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
-{ 
+public class WinScreen : MonoBehaviour
+{
+    private Rigidbody2D rigidbody;
+    
     private LevelGen level;
 
     public LineRenderer trail;
@@ -18,15 +20,19 @@ public class Movement : MonoBehaviour
         trail = gameObject.GetComponent<LineRenderer>();
     }
 
-    public bool Move(Vector2 dir) {
+    void Start() {
+        StartCoroutine(Move(new Vector2(0, -1)));
+    }
+
+    public IEnumerator Move(Vector2 dir) {
         if( (pos + dir).x < -9 ||  (pos + dir).x > 9 || (pos + dir).y < -4.5f || (pos + dir).y > 4.5f) {
-            return false;
+            yield return new WaitForSeconds(0f);
         }
 
         //To get array coordinates do (x+9), (4.5-y)
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos + dir).x) + 9 ] == '.' ) {            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);  
-            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
+            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
 
             pos += dir;
@@ -34,7 +40,7 @@ public class Movement : MonoBehaviour
 
             transform.position = pos;
 
-            return true;
+            yield return new WaitForSeconds(0f);
         }
 
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '*') {
@@ -45,13 +51,13 @@ public class Movement : MonoBehaviour
             
             level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos+dir).x) + 9 ].GetComponent<FragileRock>().Shatter();
 
-            return true;
+            yield return new WaitForSeconds(0f);
         }
 
         if ( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '+' ) {
             
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
-            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
+            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
 
             pos += dir;
@@ -64,9 +70,9 @@ public class Movement : MonoBehaviour
             newVine.GetComponent<LineRenderer>().positionCount = 1;
             newVine.GetComponent<LineRenderer>().SetPosition( 0, pos );
 
-            newVine.GetComponent<Movement>().Move(-newDir);
-            if(newVine.GetComponent<Movement>().pos == pos) {
-                Destroy(newVine.GetComponent<Movement>());
+            StartCoroutine(newVine.GetComponent<WinScreen>().Move(-newDir));
+            if(newVine.GetComponent<WinScreen>().pos == pos) {
+                Destroy(newVine.GetComponent<WinScreen>());
                 newVine.GetComponent<LineRenderer>().positionCount = 2;
                 newVine.GetComponent<LineRenderer>().material = deadTexture; 
                 newVine.GetComponent<LineRenderer>().SetPosition( 0, pos );
@@ -74,50 +80,50 @@ public class Movement : MonoBehaviour
             }
 
             Vector2 oldPos = pos;
-            Move(newDir);
+            StartCoroutine(Move(newDir));
             if(pos == oldPos) {
-                Destroy(gameObject.GetComponent<Movement>());
+                Destroy(gameObject.GetComponent<WinScreen>());
                 GameObject deadEnd = Instantiate(gameObject);
-                Destroy(deadEnd.GetComponent<Movement>());
+                Destroy(deadEnd.GetComponent<WinScreen>());
                 deadEnd.GetComponent<LineRenderer>().positionCount = 2;
                 deadEnd.GetComponent<LineRenderer>().SetPosition(0, pos);
                 deadEnd.GetComponent<LineRenderer>().SetPosition( 1, pos + (newDir * 0.5f) );
                 deadEnd.GetComponent<LineRenderer>().material = deadTexture;
             }
 
-            return true;
+            yield return new WaitForSeconds(0.1f);
         }
 
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 'g') {
             
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
-            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
+            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
             
             pos += dir;
             trail.SetPosition(trail.positionCount++, pos );
 
-            Destroy(gameObject.GetComponent<Movement>());
+            Destroy(gameObject.GetComponent<WinScreen>());
             GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles --;
 
-            return true;
+            yield return new WaitForSeconds(0f);
         }
 
         
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 's') {
             
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
-            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
+            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
             
             pos += dir;
             trail.SetPosition(trail.positionCount++, pos );
-
+            
             GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
 
-            return true;
+            yield return new WaitForSeconds(0f);
         }
 
-        return false;
+        yield return new WaitForSeconds(0f);
     }
 }

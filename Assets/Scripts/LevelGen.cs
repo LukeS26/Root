@@ -37,6 +37,7 @@ public class LevelGen : MonoBehaviour
     }
 
     public void Restart() {
+        GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles = 0;
 
         foreach(Transform child in transform) {
             Destroy(child.gameObject);
