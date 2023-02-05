@@ -13,7 +13,7 @@ LUKE:
 1. Movement
 2. Level Design
 
-Aidan:
+Aiden:
 1. UI
 2. Title Screen
 
