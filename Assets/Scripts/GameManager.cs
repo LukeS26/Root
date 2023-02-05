@@ -54,7 +54,15 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name != "Start Menu")
         {
             // Makes sure the UI always displays two digits for the remaining turns
-            if(movesLeft < 10)
+            if(movesLeft < -9)
+            {
+                turnsText.text = "Turns Remaining:" + movesLeft;
+            }
+            else if(movesLeft < 0)
+            {
+                turnsText.text = "Turns Remaining: " + movesLeft;
+            }
+            else if(movesLeft < 10)
             {
                 turnsText.text = "Turns Remaining: 0" + movesLeft;
             }
