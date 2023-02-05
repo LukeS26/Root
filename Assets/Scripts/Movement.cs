@@ -75,6 +75,7 @@ public class Movement : MonoBehaviour
             if(pos == oldPos) {
                 Destroy(gameObject.GetComponent<Movement>());
                 GameObject deadEnd = Instantiate(gameObject);
+                Destroy(deadEnd.GetComponent<Movement>());
                 deadEnd.GetComponent<LineRenderer>().positionCount = 2;
                 deadEnd.GetComponent<LineRenderer>().SetPosition(0, pos);
                 deadEnd.GetComponent<LineRenderer>().SetPosition( 1, pos + (newDir * 0.5f) );

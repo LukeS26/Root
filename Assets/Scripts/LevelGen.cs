@@ -31,9 +31,8 @@ public class LevelGen : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public LevelArray[] ParseLevel(string levelCode) {
+     return null;   
     }
+
 }
