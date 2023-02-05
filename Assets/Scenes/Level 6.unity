@@ -9375,8 +9375,8 @@ MonoBehaviour:
   instructionsScreen: {fileID: 0}
   pauseMenu: {fileID: 514761783}
   inGameUI: {fileID: 362699847}
-  beatLevelMenu: {fileID: 0}
-  loseLevelMenu: {fileID: 0}
+  beatLevelMenu: {fileID: 982297127}
+  loseLevelMenu: {fileID: 496028297}
   movesLeft: 10
   waterTiles: 1
   turnsText: {fileID: 521276408}
