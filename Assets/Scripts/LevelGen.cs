@@ -53,6 +53,9 @@ public class LevelGen : MonoBehaviour
                     case '+':
                         ret[y,x] = 3;
                         break;
+                    case 'g':
+                        ret[y,x] = 5;
+                        break;
                     default:
                         ret[y,x] = 0;
                         break;

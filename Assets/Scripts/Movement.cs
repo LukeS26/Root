@@ -20,26 +20,23 @@ public class Movement : MonoBehaviour
         trail = gameObject.GetComponent<LineRenderer>();
     }
 
-    public void Move(Vector2 dir) {
+    public bool Move(Vector2 dir) {
         if( (pos + dir).x < -9 ||  (pos + dir).x > 9 || (pos + dir).y < -4.5f || (pos + dir).y > 4.5f) {
-            return;
+            return false;
         }
 
         //To get array coordinates do (x+9), (4.5-y)
-        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos + dir).x) + 9 ] == '.'
-        || level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos + dir).x) + 9 ] == 's') {
-            
+        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos + dir).x) + 9 ] == '.' ) {            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);  
             strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
 
             pos += dir;
-
             trail.SetPosition(trail.positionCount++, pos );
 
             transform.position = pos;
 
-            return;
+            return true;
         }
 
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '*') {
@@ -50,7 +47,7 @@ public class Movement : MonoBehaviour
             
             level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos+dir).x) + 9 ].GetComponent<FragileRock>().Shatter();
 
-            return;
+            return true;
         }
 
         if ( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '+' ) {
@@ -90,8 +87,38 @@ public class Movement : MonoBehaviour
                 deadEnd.GetComponent<LineRenderer>().material = deadTexture;
             }
 
-            return;
+            return true;
         }
 
+        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 'g') {
+            
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
+            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
+            level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
+            
+            pos += dir;
+            trail.SetPosition(trail.positionCount++, pos );
+
+            Destroy(gameObject.GetComponent<Movement>());
+
+            return true;
+        }
+
+        
+        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 's') {
+            
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
+            strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'o';
+            level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
+            
+            pos += dir;
+            trail.SetPosition(trail.positionCount++, pos );
+
+            GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
+
+            return true;
+        }
+
+        return false;
     }
 }

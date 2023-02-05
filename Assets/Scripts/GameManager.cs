@@ -98,8 +98,9 @@ public class GameManager : MonoBehaviour
         else if (!paused && canMove && Mathf.Abs(x - y) > 0.2f) 
         {
             canMove = false;
-            movesLeft--;
             Movement[] roots = FindObjectsOfType<Movement>(); // Finds all Movement scripts
+            
+            bool moved = false;
 
             // Checks that Y magnitude is the greater
             if(Mathf.Abs(y) > Mathf.Abs(x)) 
@@ -109,8 +110,10 @@ public class GameManager : MonoBehaviour
                 {   
                     // Loops over each movement script and moves roots up (that can)
                     foreach (Movement root in roots) 
-                    {
-                        root.Move( new Vector2(0, 1) );
+                    {   
+                        if(root.Move( new Vector2(0, 1) )) {
+                            moved = true;
+                        }
                     }
                 }
                 else 
@@ -118,7 +121,9 @@ public class GameManager : MonoBehaviour
                     // Loops over each movement script and moves roots down (that can)
                     foreach (Movement root in roots) 
                     {
-                        root.Move( new Vector2(0, -1) );
+                        if(root.Move( new Vector2(0, -1) )) {
+                            moved = true;
+                        }
                     }
                 }
             }
@@ -130,7 +135,9 @@ public class GameManager : MonoBehaviour
                     // Loops over each movement script and moves roots right (that can)
                     foreach (Movement root in roots) 
                     {
-                        root.Move( new Vector2(1, 0) );
+                        if( root.Move( new Vector2(1, 0) ) ) {
+                            moved = true;
+                        }
                     }
                 } 
                 else 
@@ -138,9 +145,15 @@ public class GameManager : MonoBehaviour
                     // Loops over each movement script and moves roots left (that can)
                     foreach (Movement root in roots) 
                     {
-                        root.Move( new Vector2(-1, 0) );
+                        if( root.Move( new Vector2(-1, 0) ) ) {
+                            moved = true;
+                        }
                     }
                 }
+            }
+
+            if(moved) {
+                movesLeft--;
             }
         }
     }
