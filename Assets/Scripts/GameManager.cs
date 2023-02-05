@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
 
                 Worm[] worms = FindObjectsOfType<Worm>();
                 foreach (Worm worm in worms) {
-                    worm.Move();
+                    StartCoroutine(worm.RunMove());
                 }
 
                 VineAnimation[] animatedVines = FindObjectsOfType<VineAnimation>();

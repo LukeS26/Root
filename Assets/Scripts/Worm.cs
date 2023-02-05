@@ -29,6 +29,12 @@ public class Worm : MonoBehaviour
         spriteRenderer.flipX = dir < 0;
     }
 
+    public IEnumerator RunMove() {
+        yield return new WaitForSeconds(0.15f);
+
+        Move();
+    }
+
     public void Move() {
         if( (pos.x + dir) < -9 || (pos.x + dir) > 9) {
             dir *= -1;
@@ -72,6 +78,29 @@ public class Worm : MonoBehaviour
         level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
         
         dir *= -1;
+
+        if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == '.' ) {
+            
+            strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ]);
+            strBuilder[ (int)Mathf.Round(pos.x) + 9 ] = '.';
+            level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
+
+            pos += new Vector2(dir, 0);
+
+            strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ]);
+            strBuilder[ (int)Mathf.Round(pos.x) + 9 ] = '=';
+            level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
+
+            transform.position = pos;
+
+            return;
+        }
+
+        if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == 'p' ) {
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
+            return;
+        }
+
         pos += new Vector2(dir, 0);
         transform.position = pos;
 
