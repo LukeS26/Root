@@ -9027,6 +9027,7 @@ MonoBehaviour:
   movesLeft: 5
   waterTiles: 1
   turnsText: {fileID: 521276408}
+  lossText: {fileID: 633850787}
 --- !u!4 &1010263188
 Transform:
   m_ObjectHideFlags: 0

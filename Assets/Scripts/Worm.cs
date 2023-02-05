@@ -46,7 +46,7 @@ public class Worm : MonoBehaviour
 
         
         if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == 'p' ) {
-            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(); 
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
             return;
         }
 

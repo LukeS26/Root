@@ -119,7 +119,7 @@ public class Movement : MonoBehaviour
         }
 
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '=') {
-            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(); 
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
            
             return true;
         }
