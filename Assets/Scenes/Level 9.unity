@@ -8893,6 +8893,7 @@ MonoBehaviour:
   inGameUI: {fileID: 362699847}
   beatLevelMenu: {fileID: 1062041172}
   loseLevelMenu: {fileID: 742611867}
+  rootPrefab: {fileID: 6082306822377365916, guid: 00ba965c54bdcda4d94c020b5d6e0a8a, type: 3}
   movesLeft: 7
   waterTiles: 0
   turnsText: {fileID: 521276408}

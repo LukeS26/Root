@@ -13,7 +13,7 @@ public class LevelGen : MonoBehaviour
 
     public GameObject[] objects = new GameObject[5];
  
-    int[,] levelBackup;
+    string[] levelBackup = new String[10];
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,8 @@ public class LevelGen : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles = 0;
 
         int[,] level = ParseLevel(levelCode);
-        levelBackup = level;
+        Array.Copy(levelCode, levelBackup, levelCode.Length);
+;
 
         for(int y = 0; y < level.GetLength(0); y++) {
             for(int x = 0; x < level.GetLength(1); x++) {
@@ -37,17 +38,22 @@ public class LevelGen : MonoBehaviour
 
     public void Restart() {
 
+        foreach(Transform child in transform) {
+            Destroy(child.gameObject);
+        }
 
-        for(int y = 0; y < levelBackup.GetLength(0); y++) {
-            for(int x = 0; x < levelBackup.GetLength(1); x++) {
-                Destroy(objects[levelBackup[x,y]]);
+        Array.Copy(levelBackup, levelCode, levelBackup.Length);
+        int[,] level = ParseLevel(levelCode);
 
-                if(levelBackup[y,x] == 0) {
+        for(int y = 0; y < level.GetLength(0); y++) {
+            for(int x = 0; x < level.GetLength(1); x++) {
+                if(level[y,x] == 0) {
                     continue;
                 }
-                levelSave[y,x] = Instantiate( objects[ levelBackup[y,x] ], new Vector3( x - 9f, 4.5f - y, 0 ), Quaternion.identity, transform );
 
-                if(levelBackup[y,x] == 5) { GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles ++; }
+                levelSave[y,x] = Instantiate( objects[ level[y,x] ], new Vector3( x - 9f, 4.5f - y, 0 ), Quaternion.identity, transform );
+
+                if(level[y,x] == 5) { GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles ++; }
             }
         }
     }

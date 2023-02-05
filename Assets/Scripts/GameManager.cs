@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private InputManager inputManager;
 
     //Int Variables
+    private int originalMoves;
     public int movesLeft;
     public int waterTiles = 0;
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalMoves = movesLeft;
         UpdateTurns();
     }
 
@@ -115,13 +117,7 @@ public class GameManager : MonoBehaviour
     void FixedUpdate() 
     {   
         if(inputManager.Plant.Restart.ReadValue<float>() > 0.5f) {
-            GameObject.Find("Level Generator").GetComponent<LevelGen>().Restart();
-            GameObject[] roots = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject root in roots) {
-                Destroy(root);
-            }
-
-            Instantiate(rootPrefab);
+            RestartCurLevel();
         }
 
         // Reads the Movement input of the Plant as a vector 2, and stores them for use
@@ -195,6 +191,19 @@ public class GameManager : MonoBehaviour
                 movesLeft--;
             }
         }
+    }
+
+    public void RestartCurLevel() 
+    {
+        movesLeft = originalMoves;
+            GameObject.Find("Level Generator").GetComponent<LevelGen>().Restart();
+            GameObject[] roots = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject root in roots) 
+            {
+                Destroy(root);
+            }
+
+            Instantiate(rootPrefab);
     }
 
     // Hides Level Select Menu and Warns Player that This Level Hasn't Been Finished Yet
