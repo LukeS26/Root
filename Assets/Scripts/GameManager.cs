@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
+
+    //TextMeshProUGUI Variables
+    public TextMeshProUGUI turnsText;
     
     // Start is called before the first frame update
     void Start()
@@ -71,5 +76,11 @@ public class GameManager : MonoBehaviour
     public void OpenLevel1()
     {
         SceneManager.LoadScene(1);
+    }
+
+    // Switches to Level 2
+    public void OpenLevel2()
+    {
+        SceneManager.LoadScene(2);
     }
 }
