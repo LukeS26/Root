@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Start Menu.unity
     guid: c6269584cd02a1a41997d9a41a567160
@@ -38,7 +38,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 9.unity
     guid: 13e1347a5cab794459ae6cf05727de26
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Win Screen.unity
     guid: 838d9d8364eb84942b4110bcf2605362
+  - enabled: 1
+    path: Assets/Scenes/Level 10.unity
+    guid: ae490ff6f71f822458c79d0a44b8ad44
+  - enabled: 1
+    path: Assets/Scenes/Level 11.unity
+    guid: 874d81789dd71454786fdd49d9a92ce6
+  - enabled: 1
+    path: Assets/Scenes/Level 12.unity
+    guid: abb15fc0c3d622046887f86c00a55f0e
+  - enabled: 1
+    path: Assets/Scenes/Level 13.unity
+    guid: eb390779fea4a314f80529cf31b2eccf
+  - enabled: 1
+    path: Assets/Scenes/Level 14.unity
+    guid: da0b705a8d02f984192266d2fe5c8715
+  - enabled: 1
+    path: Assets/Scenes/Level 15.unity
+    guid: e43aa123b2cc67c4f8e205fa4e94224f
+  - enabled: 1
+    path: Assets/Scenes/Level 16.unity
+    guid: 1bcb5d0fca22bab499d42d6979d28110
+  - enabled: 1
+    path: Assets/Scenes/Level 17.unity
+    guid: cac9409b29c5d6241adbba8b25e9a881
+  - enabled: 1
+    path: Assets/Scenes/Level 18.unity
+    guid: 479272888d71e574c9b8f65f665adf79
   m_configObjects: {}
