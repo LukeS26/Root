@@ -7,11 +7,13 @@ public class Worm : MonoBehaviour
 
     private LevelGen level;
 
-    public Vector2 pos = new Vector2(0, 4.5f);
+    public Vector2 pos;
 
     public int dir = 1;
     void Awake() {
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
+        pos = new Vector2(transform.position.x, transform.position.y);
+        transform.position = pos;
     }
 
     public void Move() {
@@ -23,8 +25,19 @@ public class Worm : MonoBehaviour
             }
         }
 
+        System.Text.StringBuilder strBuilder;
+
         if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == '.' ) {
+            
+            strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ]);
+            strBuilder[ (int)Mathf.Round(pos.x) + 9 ] = '.';
+            level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
+
             pos += new Vector2(dir, 0);
+
+            strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ]);
+            strBuilder[ (int)Mathf.Round(pos.x) + 9 ] = '=';
+            level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
 
             transform.position = pos;
 
@@ -33,12 +46,21 @@ public class Worm : MonoBehaviour
 
         
         if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == 'p' ) {
-            //Lose
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(); 
             return;
         }
 
+
+        strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ]);
+        strBuilder[ (int)Mathf.Round(pos.x) + 9 ] = '.';
+        level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
+        
         dir *= -1;
         pos += new Vector2(dir, 0);
         transform.position = pos;
+
+        strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ]);
+        strBuilder[ (int)Mathf.Round(pos.x) + 9 ] = '=';
+        level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ] = strBuilder.ToString();
     }
 }

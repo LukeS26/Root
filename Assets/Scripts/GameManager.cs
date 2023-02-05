@@ -205,6 +205,11 @@ public class GameManager : MonoBehaviour
 
             if(moved) {
                 movesLeft--;
+                
+                Worm[] worms = FindObjectsOfType<Worm>();
+                foreach (Worm worm in worms) {
+                    worm.Move();
+                }
             }
         }
     }

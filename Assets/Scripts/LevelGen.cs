@@ -66,6 +66,7 @@ public class LevelGen : MonoBehaviour
         // + Splitter
         // . Empty
         // p Plant
+        // = Worm
         
         int[,] ret = new int[10,19];
 
@@ -86,6 +87,9 @@ public class LevelGen : MonoBehaviour
                         break;
                     case 'g':
                         ret[y,x] = 5;
+                        break;
+                    case '=':
+                        ret[y,x] = 6;
                         break;
                     default:
                         ret[y,x] = 0;
