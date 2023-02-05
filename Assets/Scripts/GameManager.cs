@@ -104,6 +104,22 @@ public class GameManager : MonoBehaviour
         inGameUI.SetActive(false);
     }
 
+    // Stop control of roots and switches to Lose Level Menu
+    public void CloseLoseLevelMenu()
+    {
+        canMove = true;
+        loseLevelMenu.SetActive(false);
+        inGameUI.SetActive(true);
+    }
+
+    // Stop control of roots and switches to Lose Level Menu
+    public void CloseBeatLevelMenu()
+    {
+        canMove = true;
+        beatLevelMenu.SetActive(false);
+        inGameUI.SetActive(true);
+    }
+
     protected void OnEnable() 
     {
         inputManager.Plant.Enable();
@@ -196,14 +212,18 @@ public class GameManager : MonoBehaviour
     public void RestartCurLevel() 
     {
         movesLeft = originalMoves;
-            GameObject.Find("Level Generator").GetComponent<LevelGen>().Restart();
-            GameObject[] roots = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject root in roots) 
-            {
-                Destroy(root);
-            }
+        GameObject.Find("Level Generator").GetComponent<LevelGen>().Restart();
+        GameObject[] roots = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject root in roots) 
+        {
+            Destroy(root);
+        }
 
-            Instantiate(rootPrefab);
+        Instantiate(rootPrefab);
+
+        ClosePause();
+        CloseBeatLevelMenu();
+        CloseLoseLevelMenu();
     }
 
     // Hides Level Select Menu and Warns Player that This Level Hasn't Been Finished Yet
