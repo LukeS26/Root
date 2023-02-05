@@ -25,8 +25,11 @@ Andrew:
 2. Horizontal Stem (DONE)
 3. Split Stem (each goes from left to right) (DONE)
 4. Possible Flower
-5. Dirt
+5. Dirt (DONE)
 6. Water
+7. Rock (DONE)
+8. Split Paths Object
+9. Enemy Objects 
 
 Music:
 David
