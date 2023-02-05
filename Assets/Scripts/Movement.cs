@@ -111,7 +111,7 @@ public class Movement : MonoBehaviour
                 newVine.GetComponent<LineRenderer>().positionCount = 2;
                 newVine.GetComponent<LineRenderer>().material = deadTexture; 
                 newVine.GetComponent<LineRenderer>().SetPosition( 0, pos );
-                newVine.GetComponent<LineRenderer>().SetPosition( 1, pos + new Vector2(-newDir.x * 0.5f, newDir.y * 0.5f) );
+                newVine.GetComponent<LineRenderer>().SetPosition( 1, pos - (newDir * 0.5f) );
             }
 
             Vector2 oldPos = pos;
@@ -121,7 +121,7 @@ public class Movement : MonoBehaviour
                 GameObject deadEnd = Instantiate(gameObject);
                 deadEnd.GetComponent<LineRenderer>().positionCount = 2;
                 deadEnd.GetComponent<LineRenderer>().SetPosition(0, pos);
-                deadEnd.GetComponent<LineRenderer>().SetPosition( 1, pos + new Vector2(-newDir.x * 0.5f, newDir.y * 0.5f) );
+                deadEnd.GetComponent<LineRenderer>().SetPosition( 1, pos + (newDir * 0.5f) );
                 deadEnd.GetComponent<LineRenderer>().material = deadTexture;
             }
 
