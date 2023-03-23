@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     public GameObject warningScreen;
     public GameObject startScreen;
     public GameObject instructionsScreen;
+    public GameObject waterScreen;
+    public GameObject splitterScreen;
+    public GameObject rockScreen;
+    public GameObject splitRockScreen;
+    public GameObject fertilizerScreen;
+    public GameObject wormsScreen;
     public GameObject pauseMenu;
     public GameObject inGameUI;
     public GameObject beatLevelMenu;
