@@ -288,6 +288,55 @@ public class GameManager : MonoBehaviour
         startScreen.SetActive(false);
         levelSelectScreen.SetActive(false);
         instructionsScreen.SetActive(true);
+
+        waterScreen.SetActive(false);
+        splitterScreen.SetActive(false);
+        rockScreen.SetActive(false);
+        splitRockScreen.SetActive(false);
+        fertilizerScreen.SetActive(false);
+        wormsScreen.SetActive(false);
+    }
+
+    // Switches to Water Screen
+    public void OpenWater()
+    {
+        instructionsScreen.SetActive(false);
+        waterScreen.SetActive(true);
+    }
+
+    // Switches to Splitter Screen
+    public void OpenSplitter()
+    {
+        instructionsScreen.SetActive(false);
+        splitterScreen.SetActive(true);
+    }
+
+    // Switches to Rock Screen
+    public void OpenRock()
+    {
+        instructionsScreen.SetActive(false);
+        rockScreen.SetActive(true);
+    }
+
+    // Switches to Split Rock Screen
+    public void OpenSplitRock()
+    {
+        instructionsScreen.SetActive(false);
+        splitRockScreen.SetActive(true);
+    }
+
+    // Switches to Fertilizer Screen
+    public void OpenFertilizer()
+    {
+        instructionsScreen.SetActive(false);
+        fertilizerScreen.SetActive(true);
+    }
+
+    // Switches to Worms Screen
+    public void OpenWorms()
+    {
+        instructionsScreen.SetActive(false);
+        wormsScreen.SetActive(true);
     }
 
     // Switches to Start Screen
