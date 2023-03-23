@@ -426,6 +426,6 @@ public class GameManager : MonoBehaviour
     // Switches to Win Screen
     public void OpenWinScreen()
     {
-        SceneManager.LoadScene(10);
+        SceneManager.LoadScene(19);
     }
 }
