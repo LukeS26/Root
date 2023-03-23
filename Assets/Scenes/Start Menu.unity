@@ -790,7 +790,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel12
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1193,7 +1193,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel10
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3247,9 +3247,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.634
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -11197,7 +11197,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -14583,7 +14583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1735192834
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14663,7 +14663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1761893376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15213,7 +15213,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1054815494}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WarnPlayer
+        m_MethodName: OpenLevel11
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

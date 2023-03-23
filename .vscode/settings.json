@@ -98,6 +98,10 @@
         "xlocnum": "cpp",
         "xmemory": "cpp",
         "xstddef": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "iomanip": "cpp",
+        "list": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp"
     }
 }
