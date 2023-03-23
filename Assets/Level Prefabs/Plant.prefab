@@ -49,6 +49,10 @@ MonoBehaviour:
   trail: {fileID: 0}
   deadTexture: {fileID: 2100000, guid: b278acb595eaa244699dfe3d2cdcc0a5, type: 2}
   pos: {x: 0, y: 4.5}
+  dirtParticle: {fileID: 5263533860261392110, guid: 23c3f531804358247be576b9ffb58db0, type: 3}
+  stoneParticle: {fileID: 3874403632754662502, guid: 7c0d48018bef85b488d9c74bf7db4219, type: 3}
+  fertilizerParticle: {fileID: 948353811146814594, guid: 987ca7621a9740149a8a0dcffa301b33, type: 3}
+  extraMovesParticle: {fileID: 15362185629996442, guid: 0c2fac236ae34d94294b78207afa771c, type: 3}
 --- !u!120 &6082306822377365917
 LineRenderer:
   m_ObjectHideFlags: 0
