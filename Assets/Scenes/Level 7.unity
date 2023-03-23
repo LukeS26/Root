@@ -10695,6 +10695,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6082306822377365906, guid: 00ba965c54bdcda4d94c020b5d6e0a8a, type: 3}
+      propertyPath: dirtParticle
+      value: 
+      objectReference: {fileID: 5263533860261392110, guid: 23c3f531804358247be576b9ffb58db0, type: 3}
+    - target: {fileID: 6082306822377365906, guid: 00ba965c54bdcda4d94c020b5d6e0a8a, type: 3}
+      propertyPath: stoneParticle
+      value: 
+      objectReference: {fileID: 3874403632754662502, guid: 7c0d48018bef85b488d9c74bf7db4219, type: 3}
     - target: {fileID: 6082306822377365907, guid: 00ba965c54bdcda4d94c020b5d6e0a8a, type: 3}
       propertyPath: m_RootOrder
       value: 1

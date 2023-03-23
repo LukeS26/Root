@@ -12,6 +12,12 @@ public class Movement : MonoBehaviour
 
     public Vector2 pos = new Vector2(0, 4.5f);
 
+    public GameObject dirtParticle;
+    public GameObject stoneParticle;
+    public GameObject fertilizerParticle;
+    public GameObject extraMovesParticle;
+
+
     void Awake() {
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
 
@@ -38,16 +44,21 @@ public class Movement : MonoBehaviour
             pos += dir;
             trail.SetPosition(trail.positionCount++, pos );
 
+            GameObject particle = Instantiate( dirtParticle );
+            particle.transform.position = pos;
+
             transform.position = pos;
 
             return true;
         }
 
-        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '*') {
-            
+        if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '*') {            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
             strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = '.';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
+
+            GameObject particle = Instantiate( stoneParticle );
+            particle.transform.position = pos + dir;
             
             level.levelSave[ (int)Mathf.Round(4.5f - (pos+dir).y), (int)Mathf.Round((pos+dir).x) + 9 ].GetComponent<FragileRock>().Shatter();
 
@@ -118,13 +129,17 @@ public class Movement : MonoBehaviour
 
         
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 's') {
-            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
             strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
             level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]=strBuilder.ToString();
             
             pos += dir;
             trail.SetPosition(trail.positionCount++, pos );
+
+            GameObject particle = Instantiate( fertilizerParticle );
+            particle.transform.position = pos;
+
+            Instantiate(extraMovesParticle);
 
             GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
 
