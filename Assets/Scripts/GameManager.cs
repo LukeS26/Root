@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject warningScreen;
     public GameObject startScreen;
     public GameObject instructionsScreen;
+    public GameObject rootScreen;
     public GameObject waterScreen;
     public GameObject splitterScreen;
     public GameObject rockScreen;
@@ -295,6 +296,13 @@ public class GameManager : MonoBehaviour
         splitRockScreen.SetActive(false);
         fertilizerScreen.SetActive(false);
         wormsScreen.SetActive(false);
+    }
+
+    // Switches to Root Screen
+    public void OpenRoot()
+    {
+        instructionsScreen.SetActive(false);
+        rootScreen.SetActive(true);
     }
 
     // Switches to Water Screen
