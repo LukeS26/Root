@@ -290,6 +290,7 @@ public class GameManager : MonoBehaviour
         levelSelectScreen.SetActive(false);
         instructionsScreen.SetActive(true);
 
+        rootScreen.SetActive(false);
         waterScreen.SetActive(false);
         splitterScreen.SetActive(false);
         rockScreen.SetActive(false);
