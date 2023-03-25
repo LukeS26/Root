@@ -299,6 +299,36 @@ public class GameManager : MonoBehaviour
         wormsScreen.SetActive(false);
     }
 
+    // Switches to Instructions Screen
+    public void OpenControls()
+    {
+        pauseMenu.SetActive(false);
+        instructionsScreen.SetActive(true);
+
+        rootScreen.SetActive(false);
+        waterScreen.SetActive(false);
+        splitterScreen.SetActive(false);
+        rockScreen.SetActive(false);
+        splitRockScreen.SetActive(false);
+        fertilizerScreen.SetActive(false);
+        wormsScreen.SetActive(false);
+    }
+
+    // Switches off Instructions Screen
+    public void CloseControls()
+    {
+        pauseMenu.SetActive(true);
+        instructionsScreen.SetActive(false);
+
+        rootScreen.SetActive(false);
+        waterScreen.SetActive(false);
+        splitterScreen.SetActive(false);
+        rockScreen.SetActive(false);
+        splitRockScreen.SetActive(false);
+        fertilizerScreen.SetActive(false);
+        wormsScreen.SetActive(false);
+    }
+
     // Switches to Root Screen
     public void OpenRoot()
     {
