@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject levelSelectScreen;
     public GameObject warningScreen;
     public GameObject startScreen;
+    public GameObject legalScreen;
     public GameObject instructionsScreen;
     public GameObject rootScreen;
     public GameObject waterScreen;
@@ -280,6 +281,15 @@ public class GameManager : MonoBehaviour
         warningScreen.SetActive(false);
         startScreen.SetActive(false);
         levelSelectScreen.SetActive(true);
+    }
+
+    // Switches to Level Select Screen
+    public void OpenLegal()
+    {
+        warningScreen.SetActive(false);
+        startScreen.SetActive(false);
+        levelSelectScreen.SetActive(false);
+        legalScreen.SetActive(true);
     }
 
     // Switches to Instructions Screen
