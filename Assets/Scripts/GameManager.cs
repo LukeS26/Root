@@ -92,11 +92,12 @@ public class GameManager : MonoBehaviour
             }
 
             // changes color to reflect urgency of number of turns left
-            if(movesLeft <= 3)
+            float urgency = ((float)movesLeft/(float)originalMoves);
+            if((urgency <= 0.15f) || (movesLeft <= 2))
             {
                 turnsText.color = Color.red;
             }
-            else if(movesLeft <= 6)
+            else if((urgency < 0.5f) || (movesLeft <= 4))
             {
                 turnsText.color = Color.yellow;
             }

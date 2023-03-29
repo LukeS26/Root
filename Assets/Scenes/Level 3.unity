@@ -3779,7 +3779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5dd530c8cb51af94a9af1feaa472f0f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8a621e3f2fe32b48a39dd3645d4005f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13335,6 +13335,7 @@ MonoBehaviour:
   levelSelectScreen: {fileID: 0}
   warningScreen: {fileID: 0}
   startScreen: {fileID: 0}
+  legalScreen: {fileID: 0}
   instructionsScreen: {fileID: 1793242296}
   rootScreen: {fileID: 305859651}
   waterScreen: {fileID: 93695313}
@@ -18032,7 +18033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5dd530c8cb51af94a9af1feaa472f0f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8a621e3f2fe32b48a39dd3645d4005f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
