@@ -90,6 +90,20 @@ public class GameManager : MonoBehaviour
             {
                 turnsText.text = "Turns Remaining: " + movesLeft;
             }
+
+            // changes color to reflect urgency of number of turns left
+            if(movesLeft <= 3)
+            {
+                turnsText.color = Color.red;
+            }
+            else if(movesLeft <= 6)
+            {
+                turnsText.color = Color.yellow;
+            }
+            else
+            {
+                turnsText.color = Color.white;
+            }
         }
     }
 
