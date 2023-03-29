@@ -394,6 +394,7 @@ public class GameManager : MonoBehaviour
         warningScreen.SetActive(false);
         levelSelectScreen.SetActive(false);
         instructionsScreen.SetActive(false);
+        legalScreen.SetActive(false);
         startScreen.SetActive(true);
     }
 
