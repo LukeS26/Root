@@ -18175,6 +18175,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6082306822377365906, guid: 00ba965c54bdcda4d94c020b5d6e0a8a, type: 3}
+      propertyPath: hitRockSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 0191819bdde7e92499603306fc97ee77, type: 3}
     - target: {fileID: 6082306822377365907, guid: 00ba965c54bdcda4d94c020b5d6e0a8a, type: 3}
       propertyPath: m_RootOrder
       value: 1

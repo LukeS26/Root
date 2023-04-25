@@ -16,12 +16,17 @@ public class Movement : MonoBehaviour
     public GameObject stoneParticle;
     public GameObject fertilizerParticle;
     public GameObject extraMovesParticle;
+    
+    private AudioSource plantAudio;
+    public AudioClip hitRockSFX;
 
 
     void Awake() {
         level = GameObject.Find("Level Generator").GetComponent<LevelGen>();
 
         trail = gameObject.GetComponent<LineRenderer>();
+
+        plantAudio = GetComponent<AudioSource>();
     }
 
     public bool Move(Vector2 dir) {
@@ -145,6 +150,8 @@ public class Movement : MonoBehaviour
 
             return true;
         }
+
+        plantAudio.PlayOneShot(hitRockSFX, 1.0f);
 
         return false;
     }

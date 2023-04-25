@@ -3,7 +3,14 @@ guid: 7c90f52b625889645b58cabf2068a40b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - trail: {instanceID: 0}
+  - deadTexture: {instanceID: 0}
+  - dirtParticle: {instanceID: 0}
+  - stoneParticle: {instanceID: 0}
+  - fertilizerParticle: {instanceID: 0}
+  - extraMovesParticle: {instanceID: 0}
+  - hitRockSFX: {fileID: 8300000, guid: 0191819bdde7e92499603306fc97ee77, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
