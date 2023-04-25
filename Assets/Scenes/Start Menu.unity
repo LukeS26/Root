@@ -15527,6 +15527,7 @@ MonoBehaviour:
   m_text: 'This game was created as part of a 48-hour Game Jam by a team of College
     Freshmen, none of whom are studying anything related to plants
 
+
     They cannot
     be held responsible for ANY misconceptions the elements of this game may create,
     as they are meant to be fun, not educational'
@@ -16365,11 +16366,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use W/A/S/D or the Arrow Keys to control the Root
+  m_text: 'Use W/A/S/D or the Arrow Keys to control the Root, and R to restart the
+    Level
 
 
-    Click on the Tiles
-    to the right to see how they work in the game!'
+    Click on the Tiles to the right to see how they work in the game!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
