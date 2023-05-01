@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     
     private AudioSource plantAudio;
     public AudioClip hitRockSFX;
+    public AudioClip fertilizerSFX;
     public AudioClip soilSFX;
     public AudioClip eatenSFX;
     public AudioClip reachWaterSFX;
@@ -40,10 +41,10 @@ public class Movement : MonoBehaviour
 
         // Checks if the Plant collided with a Worm
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '=') {
-            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true);
-
             plantAudio.PlayOneShot(eatenSFX, 1.0f); // plays sound effect of worm eating plant at full volume
            
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true);
+
             return false;
         }
 
@@ -61,6 +62,8 @@ public class Movement : MonoBehaviour
             particle.transform.position = pos;
 
             transform.position = pos;
+
+            plantAudio.PlayOneShot(soilSFX, 0.25f); // plays sound effect of plant moving through soil at a quarter volume
 
             return true;
         }
@@ -124,7 +127,7 @@ public class Movement : MonoBehaviour
                 deadEnd.GetComponent<LineRenderer>().material = deadTexture;
             }
 
-            plantAudio.PlayOneShot(splittingSFX, 1.0f); // plays sound effect of plant splitting at full volume
+            plantAudio.PlayOneShot(splittingSFX, 0.5f); // plays sound effect of plant splitting at half volume
             
             return true;
         }
@@ -142,7 +145,7 @@ public class Movement : MonoBehaviour
             Destroy(gameObject.GetComponent<Movement>());
             GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles --;
 
-            plantAudio.PlayOneShot(reachWaterSFX, 1.0f); // plays sound effect of plant reaching water at full volume
+            plantAudio.PlayOneShot(reachWaterSFX, 0.5f); // plays sound effect of plant reaching water at half volume
             
             return true;
         }
@@ -164,13 +167,13 @@ public class Movement : MonoBehaviour
 
             GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
 
-            plantAudio.PlayOneShot(soilSFX, 1.0f); // plays sound effect of plant moving through soil at full volume
+            /* plantAudio.PlayOneShot(fertilizerSFX, 0.5f); // plays sound effect of plant recieving more moves at half volume */
 
             return true;
         }
 
         // Assumes obstacle was hit
-        plantAudio.PlayOneShot(hitRockSFX, 1.0f); // plays sound effect of plant colliding with obstacle at full volume
+        plantAudio.PlayOneShot(hitRockSFX, 0.5f); // plays sound effect of plant colliding with obstacle at half volume
         return false;
     }
 }

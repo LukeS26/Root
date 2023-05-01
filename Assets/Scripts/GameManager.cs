@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Stop control of roots and switches to Lose Level Menu
+    // Stop control of roots and switches to Beat Level Menu
     public void OpenBeatLevelMenu()
     {
         canMove = false;
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         inGameUI.SetActive(false);
     }
 
-    // Stop control of roots and switches to Lose Level Menu
+    // Resumes control of roots and closes Lose Level Menu
     public void CloseLoseLevelMenu()
     {
         canMove = true;
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         inGameUI.SetActive(true);
     }
 
-    // Stop control of roots and switches to Lose Level Menu
+    // Resumes control of roots and closes Beat Level Menu
     public void CloseBeatLevelMenu()
     {
         canMove = true;
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
         float y = inputManager.Plant.Movement.ReadValue<Vector2>().y;
 
         // Checks to see if there is no input, and if so allows a key to be pressed again
-        if(Mathf.Abs(x) < 0.5f && Mathf.Abs(y) < 0.5f)
+        if(Mathf.Abs(x) < 0.5f && Mathf.Abs(y) < 0.5f && !loseLevelMenu.activeSelf)
         {
             canMove = true;
         } 

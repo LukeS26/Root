@@ -5,6 +5,9 @@ using UnityEngine;
 public class Worm : MonoBehaviour
 {
 
+    private AudioSource plantAudio;
+    public AudioClip eatenSFX;
+    
     private LevelGen level;
 
     public Vector2 pos;
@@ -23,6 +26,8 @@ public class Worm : MonoBehaviour
         transform.position = pos;
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        plantAudio = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -69,6 +74,9 @@ public class Worm : MonoBehaviour
         
         if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == 'p' ) {
             GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
+
+            plantAudio.PlayOneShot(eatenSFX, 1.0f); // plays sound effect of worm eating plant at full volume
+
             return;
         }
 
@@ -97,7 +105,10 @@ public class Worm : MonoBehaviour
         }
 
         if(level.levelCode[ (int)Mathf.Round(4.5f - pos.y) ][ (int)Mathf.Round(pos.x + dir) + 9 ] == 'p' ) {
-            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true);
+
+            plantAudio.PlayOneShot(eatenSFX, 1.0f); // plays sound effect of worm eating plant at full volume
+
             return;
         }
 
