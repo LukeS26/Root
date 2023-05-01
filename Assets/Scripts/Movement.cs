@@ -63,7 +63,7 @@ public class Movement : MonoBehaviour
 
             transform.position = pos;
 
-            plantAudio.PlayOneShot(soilSFX, 0.25f); // plays sound effect of plant moving through soil at a quarter volume
+            plantAudio.PlayOneShot(soilSFX, 0.025f); // plays sound effect of plant moving through soil at a quarter volume
 
             return true;
         }
@@ -167,7 +167,7 @@ public class Movement : MonoBehaviour
 
             GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
 
-            /* plantAudio.PlayOneShot(fertilizerSFX, 0.5f); // plays sound effect of plant recieving more moves at half volume */
+            plantAudio.PlayOneShot(fertilizerSFX, 1.0f); // plays sound effect of plant recieving more moves at full volume
 
             return true;
         }

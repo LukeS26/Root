@@ -55,7 +55,7 @@ MonoBehaviour:
   fertilizerParticle: {fileID: 948353811146814594, guid: 987ca7621a9740149a8a0dcffa301b33, type: 3}
   extraMovesParticle: {fileID: 15362185629996442, guid: 0c2fac236ae34d94294b78207afa771c, type: 3}
   hitRockSFX: {fileID: 8300000, guid: 0191819bdde7e92499603306fc97ee77, type: 3}
-  fertilizerSFX: {fileID: 0}
+  fertilizerSFX: {fileID: 8300000, guid: 313b2a523b591d248b9d80368f911b88, type: 3}
   soilSFX: {fileID: 8300000, guid: 531dec18e3f907c439d990fc3ad7e06d, type: 3}
   eatenSFX: {fileID: 8300000, guid: 2aed45ee1d311304198b30c9cf7f0678, type: 3}
   reachWaterSFX: {fileID: 8300000, guid: e08b60d516ff2054e86ff8ba002e2450, type: 3}
