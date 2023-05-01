@@ -19,6 +19,10 @@ public class Movement : MonoBehaviour
     
     private AudioSource plantAudio;
     public AudioClip hitRockSFX;
+    public AudioClip soilSFX;
+    public AudioClip eatenSFX;
+    public AudioClip reachWaterSFX;
+    public AudioClip splittingSFX;
 
 
     void Awake() {
@@ -34,13 +38,17 @@ public class Movement : MonoBehaviour
             return false;
         }
 
+        // Checks if the Plant collided with a Worm
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '=') {
-            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true); 
+            GameObject.Find("GameManager").GetComponent<GameManager>().OpenLoseLevelMenu(true);
+
+            plantAudio.PlayOneShot(eatenSFX, 1.0f); // plays sound effect of worm eating plant at full volume
            
             return false;
         }
 
         //To get array coordinates do (x+9), (4.5-y)
+        // Checks if the Plant collided with Empty Space
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos + dir).x) + 9 ] == '.' ) {            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);  
             strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
@@ -57,6 +65,7 @@ public class Movement : MonoBehaviour
             return true;
         }
 
+        // Checks if the Plant collided with a Fragile Rock
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '*') {            
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
             strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = '.';
@@ -70,6 +79,7 @@ public class Movement : MonoBehaviour
             return true;
         }
 
+        // Checks if the Plant collided with a Splitter
         if ( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == '+' ) {
             
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
@@ -114,9 +124,12 @@ public class Movement : MonoBehaviour
                 deadEnd.GetComponent<LineRenderer>().material = deadTexture;
             }
 
+            plantAudio.PlayOneShot(splittingSFX, 1.0f); // plays sound effect of plant splitting at full volume
+            
             return true;
         }
 
+        // Checks if the Plant collided with Water
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 'g') {
             
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
@@ -129,10 +142,13 @@ public class Movement : MonoBehaviour
             Destroy(gameObject.GetComponent<Movement>());
             GameObject.Find("GameManager").GetComponent<GameManager>().waterTiles --;
 
+            plantAudio.PlayOneShot(reachWaterSFX, 1.0f); // plays sound effect of plant reaching water at full volume
+            
             return true;
         }
 
         
+        // Checks if the Plant collided with Fertilizer
         if( level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ][ (int)Mathf.Round((pos+dir).x) + 9 ] == 's') {
             System.Text.StringBuilder strBuilder = new System.Text.StringBuilder(level.levelCode[ (int)Mathf.Round(4.5f - (pos+dir).y) ]);
             strBuilder[ (int)Mathf.Round((pos+dir).x) + 9 ] = 'p';
@@ -148,11 +164,13 @@ public class Movement : MonoBehaviour
 
             GameObject.Find("GameManager").GetComponent<GameManager>().movesLeft += 5;
 
+            plantAudio.PlayOneShot(soilSFX, 1.0f); // plays sound effect of plant moving through soil at full volume
+
             return true;
         }
 
-        plantAudio.PlayOneShot(hitRockSFX, 1.0f);
-
+        // Assumes obstacle was hit
+        plantAudio.PlayOneShot(hitRockSFX, 1.0f); // plays sound effect of plant colliding with obstacle at full volume
         return false;
     }
 }
