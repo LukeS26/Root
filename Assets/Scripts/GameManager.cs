@@ -7,48 +7,35 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //GameObject Variables
-    public GameObject levelSelectScreen;
-    public GameObject warningScreen;
-    public GameObject startScreen;
-    public GameObject legalScreen;
-    public GameObject instructionsScreen;
-    public GameObject rootScreen;
-    public GameObject waterScreen;
-    public GameObject splitterScreen;
-    public GameObject rockScreen;
-    public GameObject splitRockScreen;
-    public GameObject fertilizerScreen;
-    public GameObject wormsScreen;
-    public GameObject pauseMenu;
-    public GameObject inGameUI;
-    public GameObject beatLevelMenu;
-    public GameObject loseLevelMenu;
+    // GameObject Variables
+    public GameObject levelSelectScreen, warningScreen, startScreen;
+    public GameObject legalScreen, instructionsScreen;
+    public GameObject rootScreen, waterScreen, splitterScreen, rockScreen;
+    public GameObject splitRockScreen, fertilizerScreen, wormsScreen;
+    public GameObject pauseMenu, inGameUI;
+    public GameObject beatLevelMenu, loseLevelMenu;
     public GameObject rootPrefab;
 
-    //InputManager Variables
+    // InputManager Variables
     private InputManager inputManager;
 
-    //Int Variables
+    // Int Variables
     private int originalMoves;
     public int movesLeft;
     public int waterTiles = 0;
 
-    //Bool Variables
+    // Bool Variables
     private bool paused = false;
     private bool canMove = false;
 
-    //TextMeshProUGUI Variables
+    // TextMeshProUGUI Variables
     public TextMeshProUGUI turnsText;
     public TextMeshProUGUI lossText;
 
-    //Script Variables
+    // Script Variables
     Movement movementScript;
 
-    void Awake() 
-    {
-        inputManager = new InputManager();
-    }
+    void Awake() { inputManager = new InputManager(); }
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +48,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTurns();
+
+        // Opens Level Loss Menu once the player runs out of moves
         if(movesLeft <= 0 && waterTiles > 0)
         {
             OpenLoseLevelMenu(false);
@@ -121,17 +110,12 @@ public class GameManager : MonoBehaviour
             // checks if you reached water as the worm got to you
             if(waterTiles <= 0)
             {
-                lossText.text = "You made it to water, but a worm got to you before you could drink any of it!";
+                lossText.text = "You made it to water, but a worm got to you before" +
+                                " you could drink any of it!";
             }
-            else
-            {
-                lossText.text = "You were eaten by a worm!";
-            }
+            else { lossText.text = "You were eaten by a worm!"; }
         }
-        else
-        {
-            lossText.text = "You Ran Out of Moves!";
-        }
+        else { lossText.text = "You Ran Out of Moves!"; }
     }
 
     // Stop control of roots and switches to Beat Level Menu
@@ -158,124 +142,84 @@ public class GameManager : MonoBehaviour
         inGameUI.SetActive(true);
     }
 
-    protected void OnEnable() 
-    {
-        inputManager.Plant.Enable();
-    }
+    // Enables the Root to be moved
+    protected void OnEnable() { inputManager.Plant.Enable(); }
 
-    protected void OnDisable() 
-    {
-        inputManager.Plant.Disable();
-    }
+    // Prevents the Root from moving
+    protected void OnDisable() { inputManager.Plant.Disable(); }
 
     void FixedUpdate() 
     {   
-        if(inputManager.Plant.Restart.ReadValue<float>() > 0.5f) {
-            RestartCurLevel();
-        }
+        if(inputManager.Plant.Restart.ReadValue<float>() > 0.5f) { RestartCurLevel(); }
 
         // Reads the Movement input of the Plant as a vector 2, and stores them for use
         float x = inputManager.Plant.Movement.ReadValue<Vector2>().x;
         float y = inputManager.Plant.Movement.ReadValue<Vector2>().y;
 
         // Checks to see if there is no input, and if so allows a key to be pressed again
-        if(Mathf.Abs(x) < 0.5f && Mathf.Abs(y) < 0.5f && !loseLevelMenu.activeSelf)
-        {
-            canMove = true;
-        } 
+        if((Mathf.Abs(x) < 0.5f) && (Mathf.Abs(y) < 0.5f) && !loseLevelMenu.activeSelf) { canMove = true; }
+
         // Checks game isn't paused, key has been released, and there is movement that isn't in a diagonal direction, allow movement
-        else if (!paused && canMove && Mathf.Abs(x - y) > 0.2f) 
+        else if (!paused && canMove && (Mathf.Abs(x - y) > 0.2f)) { MoveRoot(x, y); }
+    }
+
+    // Allows Movement
+    void MoveRoot(float x, float y)
+    {
+        canMove = false;
+        Movement[] roots = FindObjectsOfType<Movement>(); // Finds all Movement scripts
+        bool moved = false;
+
+        int xPos, yPos;
+        
+        // Checks that Y magnitude is the greater
+        if(Mathf.Abs(y) > Mathf.Abs(x)) 
         {
-            canMove = false;
-            Movement[] roots = FindObjectsOfType<Movement>(); // Finds all Movement scripts
+            xPos = 0;
             
-            bool moved = false;
+            // Checks y is positive
+            if(y > 0) { yPos = 1; }
+            else { yPos = -1; }
+        }
+        else 
+        {
+            yPos = 0;
+            
+            // Checks x is positive
+            if(x > 0) { xPos = 1; }
+            else { xPos = -1; }
+        }
 
-            // Checks that Y magnitude is the greater
-            if(Mathf.Abs(y) > Mathf.Abs(x)) 
-            {
-                // Checks y is positive
-                if(y > 0) 
-                {   
-                    // Loops over each movement script and moves roots up (that can)
-                    foreach (Movement root in roots) 
-                    {   
-                        if(root.Move( new Vector2(0, 1) )) {
-                            moved = true;
-                        }
-                    }
-                }
-                else 
-                {
-                    // Loops over each movement script and moves roots down (that can)
-                    foreach (Movement root in roots) 
-                    {
-                        if(root.Move( new Vector2(0, -1) )) {
-                            moved = true;
-                        }
-                    }
-                }
-            }
-            else 
-            {
-                // Checks x is positive
-                if(x > 0) 
-                {
-                    // Loops over each movement script and moves roots right (that can)
-                    foreach (Movement root in roots) 
-                    {
-                        if( root.Move( new Vector2(1, 0) ) ) {
-                            moved = true;
-                        }
-                    }
-                } 
-                else 
-                {
-                    // Loops over each movement script and moves roots left (that can)
-                    foreach (Movement root in roots) 
-                    {
-                        if( root.Move( new Vector2(-1, 0) ) ) {
-                            moved = true;
-                        }
-                    }
-                }
-            }
+        // Loops over each movement script and moves roots (that can)
+        foreach (Movement root in roots) 
+        {   
+            if(root.Move( new Vector2(xPos, yPos) )) { moved = true; }
+        }
 
-            if(moved) {
-                movesLeft--;
+        // Only updates anything that moves if at least one root moved
+        if(moved) 
+        {
+            movesLeft--;
 
-                Worm[] worms = FindObjectsOfType<Worm>();
-                foreach (Worm worm in worms) {
-                    StartCoroutine(worm.RunMove());
-                }
+            Worm[] worms = FindObjectsOfType<Worm>();
+            foreach (Worm worm in worms) { StartCoroutine(worm.RunMove()); }
 
-                VineAnimation[] animatedVines = FindObjectsOfType<VineAnimation>();
-                foreach (VineAnimation animatedVine in animatedVines) {
-                    animatedVine.Animate();
-                }
+            VineAnimation[] animatedVines = FindObjectsOfType<VineAnimation>();
+            foreach (VineAnimation animatedVine in animatedVines) { animatedVine.Animate(); }
 
-                if(loseLevelMenu.activeSelf) {
-                    return;
-                }
-
-                if(waterTiles <= 0)
-                {
-                    OpenBeatLevelMenu();
-                }
-            }
+            if(!(loseLevelMenu.activeSelf) && (waterTiles <= 0)) { OpenBeatLevelMenu(); }
         }
     }
 
+    // Resets the current level
     public void RestartCurLevel() 
     {
         movesLeft = originalMoves;
         GameObject.Find("Level Generator").GetComponent<LevelGen>().Restart();
         GameObject[] roots = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject root in roots) 
-        {
-            Destroy(root);
-        }
 
+        // Resets the root
+        foreach(GameObject root in roots) { Destroy(root); }
         Instantiate(rootPrefab);
 
         ClosePause();
@@ -314,14 +258,7 @@ public class GameManager : MonoBehaviour
         startScreen.SetActive(false);
         levelSelectScreen.SetActive(false);
         instructionsScreen.SetActive(true);
-
-        rootScreen.SetActive(false);
-        waterScreen.SetActive(false);
-        splitterScreen.SetActive(false);
-        rockScreen.SetActive(false);
-        splitRockScreen.SetActive(false);
-        fertilizerScreen.SetActive(false);
-        wormsScreen.SetActive(false);
+        CloseSpecifics()
     }
 
     // Switches to Instructions Screen
@@ -329,14 +266,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         instructionsScreen.SetActive(true);
-
-        rootScreen.SetActive(false);
-        waterScreen.SetActive(false);
-        splitterScreen.SetActive(false);
-        rockScreen.SetActive(false);
-        splitRockScreen.SetActive(false);
-        fertilizerScreen.SetActive(false);
-        wormsScreen.SetActive(false);
+        CloseSpecifics()
     }
 
     // Switches off Instructions Screen
@@ -344,7 +274,12 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         instructionsScreen.SetActive(false);
+        CloseSpecifics()
+    }
 
+    // Switches off each specific tile screen
+    void CloseSpecifics()
+    {
         rootScreen.SetActive(false);
         waterScreen.SetActive(false);
         splitterScreen.SetActive(false);
@@ -430,122 +365,62 @@ public class GameManager : MonoBehaviour
     }
 
     // Switches to Start Screen
-    public void LeaveLevel()
-    {
-        SceneManager.LoadScene(0);
-    }
+    public void LeaveLevel() { SceneManager.LoadScene(0); }
 
     // Switches to Level 1
-    public void OpenLevel1()
-    {
-        SceneManager.LoadScene(1);
-    }
+    public void OpenLevel1() { SceneManager.LoadScene(1); }
 
     // Switches to Level 2
-    public void OpenLevel2()
-    {
-        SceneManager.LoadScene(2);
-    }
+    public void OpenLevel2() { SceneManager.LoadScene(2); }
 
     // Switches to Level 3
-    public void OpenLevel3()
-    {
-        SceneManager.LoadScene(3);
-    }
+    public void OpenLevel3() { SceneManager.LoadScene(3); }
 
     // Switches to Level 4
-    public void OpenLevel4()
-    {
-        SceneManager.LoadScene(4);
-    }
+    public void OpenLevel4() { SceneManager.LoadScene(4); }
 
     // Switches to Level 5
-    public void OpenLevel5()
-    {
-        SceneManager.LoadScene(5);
-    }
+    public void OpenLevel5() { SceneManager.LoadScene(5); }
 
     // Switches to Level 6
-    public void OpenLevel6()
-    {
-        SceneManager.LoadScene(6);
-    }
+    public void OpenLevel6() { SceneManager.LoadScene(6); }
 
     // Switches to Level 7
-    public void OpenLevel7()
-    {
-        SceneManager.LoadScene(7);
-    }
+    public void OpenLevel7() { SceneManager.LoadScene(7); }
 
     // Switches to Level 8
-    public void OpenLevel8()
-    {
-        SceneManager.LoadScene(8);
-    }
+    public void OpenLevel8() { SceneManager.LoadScene(8); }
 
     // Switches to Level 9
-    public void OpenLevel9()
-    {
-        SceneManager.LoadScene(9);
-    }
+    public void OpenLevel9() { SceneManager.LoadScene(9); }
 
     // Switches to Level 10
-    public void OpenLevel10()
-    {
-        SceneManager.LoadScene(10);
-    }
+    public void OpenLevel10() { SceneManager.LoadScene(10); }
 
     // Switches to Level 11
-    public void OpenLevel11()
-    {
-        SceneManager.LoadScene(11);
-    }
+    public void OpenLevel11() { SceneManager.LoadScene(11); }
 
     // Switches to Level 12
-    public void OpenLevel12()
-    {
-        SceneManager.LoadScene(12);
-    }
+    public void OpenLevel12() { SceneManager.LoadScene(12); }
 
     // Switches to Level 13
-    public void OpenLevel13()
-    {
-        SceneManager.LoadScene(13);
-    }
+    public void OpenLevel13() { SceneManager.LoadScene(13); }
 
     // Switches to Level 14
-    public void OpenLevel14()
-    {
-        SceneManager.LoadScene(14);
-    }
+    public void OpenLevel14() { SceneManager.LoadScene(14); }
 
     // Switches to Level 15
-    public void OpenLevel15()
-    {
-        SceneManager.LoadScene(15);
-    }
+    public void OpenLevel15() { SceneManager.LoadScene(15); }
 
     // Switches to Level 16
-    public void OpenLevel16()
-    {
-        SceneManager.LoadScene(16);
-    }
+    public void OpenLevel16() { SceneManager.LoadScene(16); }
 
     // Switches to Level 17
-    public void OpenLevel17()
-    {
-        SceneManager.LoadScene(17);
-    }
+    public void OpenLevel17() { SceneManager.LoadScene(17); }
 
     // Switches to Level 18
-    public void OpenLevel18()
-    {
-        SceneManager.LoadScene(18);
-    }
+    public void OpenLevel18() { SceneManager.LoadScene(18); }
 
     // Switches to Win Screen
-    public void OpenWinScreen()
-    {
-        SceneManager.LoadScene(19);
-    }
+    public void OpenWinScreen() { SceneManager.LoadScene(19); }
 }

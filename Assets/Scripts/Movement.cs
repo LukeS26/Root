@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 { 
+    // LevelGen Variables
     private LevelGen level;
 
+    // LineRenderer Variables
     public LineRenderer trail;
 
+    // Material Variables
     public Material deadTexture;
 
+    // Vector2 Variables
     public Vector2 pos = new Vector2(0, 4.5f);
 
-    public GameObject dirtParticle;
-    public GameObject stoneParticle;
-    public GameObject fertilizerParticle;
-    public GameObject extraMovesParticle;
+    // GameObject Variables
+    public GameObject dirtParticle, stoneParticle;
+    public GameObject fertilizerParticle, extraMovesParticle;
     
+    // AudioSource Variables
     private AudioSource plantAudio;
-    public AudioClip hitRockSFX;
-    public AudioClip fertilizerSFX;
-    public AudioClip soilSFX;
-    public AudioClip eatenSFX;
-    public AudioClip reachWaterSFX;
-    public AudioClip splittingSFX;
+    
+    // AudioClip Variables
+    public AudioClip hitRockSFX, fertilizerSFX, soilSFX;
+    public AudioClip eatenSFX, reachWaterSFX, splittingSFX;
 
 
     void Awake() {

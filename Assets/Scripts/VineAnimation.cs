@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class VineAnimation : MonoBehaviour
 {
+    // LineRenderer Variables
     LineRenderer trail;
     
+    // Material Variables
     public Material[] mats = new Material[2];
 
+    // Integer Variables
     int curAnimation = 0;
 
     void Awake()

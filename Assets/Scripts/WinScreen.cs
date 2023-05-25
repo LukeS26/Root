@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class WinScreen : MonoBehaviour
 {
+    // Rigidbody2D Variables
     private Rigidbody2D rigidbody;
     
+    // LevelGen Variables
     private LevelGen level;
 
+    // LineRenderer Variables
     public LineRenderer trail;
 
+    // Material Variables
     public Material deadTexture;
 
+    // Vector2 Variables
     public Vector2 pos = new Vector2(0, 4.5f);
 
     void Awake() {

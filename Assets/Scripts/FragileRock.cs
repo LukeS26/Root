@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class FragileRock : MonoBehaviour
 {
-
+    // Sprite Variables
     public Sprite shatteredRock;
+
+    // AudioSource Variables
     private AudioSource shatteredRockAudio;
+
+    // AudioClip Variables
     public AudioClip shatterSFX;
 
+    // SpriteRenderer Variables
     private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +23,7 @@ public class FragileRock : MonoBehaviour
         shatteredRockAudio = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Shatters the fragile rock, and plays the shatter sfx
     public void Shatter() {
         spriteRenderer.sprite = shatteredRock;
         shatteredRockAudio.PlayOneShot(shatterSFX, 1.0f);

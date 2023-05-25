@@ -5,19 +5,26 @@ using UnityEngine;
 public class Worm : MonoBehaviour
 {
 
+    // AudioSource Variables
     private AudioSource plantAudio;
+
+    // AudioClip Variables
     public AudioClip eatenSFX;
     
+    // LevelGen Variables
     private LevelGen level;
 
+    // Vector2 Variables
     public Vector2 pos;
 
+    // SpriteRenderer Variables
     SpriteRenderer spriteRenderer;
 
+    // Sprite Variables
     public Sprite[] sprites = new Sprite[2];
     
+    // Integer Variables
     int curSprite = 0;
-
     public int dir = 1;
 
     void Awake() {
